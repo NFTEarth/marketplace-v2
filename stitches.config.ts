@@ -128,7 +128,7 @@ export const { createTheme, keyframes, styled, globalCss, getCssText } =
         sm: 1,
         md: 5,
         lg: 10,
-        xl: 1000, 
+        xl: 1000,
         xxl: 9999,
       },
       fontWeights: {
@@ -171,12 +171,13 @@ export const { createTheme, keyframes, styled, globalCss, getCssText } =
         '4xl': '49px',
         full: '9999px',
       },
-     // will modify shadows  
+      // will modify shadows
       shadows: {
         xs: '0px 2px 7px rgba(0, 0, 0, 0.04)',
         sm: '0px 2px 5px rgba(60, 66, 87, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.08)',
         md: '0px 7px 15px rgba(24, 24, 27, 0.06), 0px 2px 4px rgba(24, 24, 27, 0.02), inset 0px 35px 50px #FFFFFF',
-        '2md': '0px 12px 16px -4px rgba(16, 24, 40, 0.1), 0px 4px 6px -2px rgba(16, 24, 40, 0.05)',
+        '2md':
+          '0px 12px 16px -4px rgba(16, 24, 40, 0.1), 0px 4px 6px -2px rgba(16, 24, 40, 0.05)',
         lg: '0px 20px 13px rgba(24, 24, 27, 0.04), 0px 9px 7px rgba(16, 24, 40, 0.03), 0px 2px 4px rgba(16, 24, 40, 0.02)',
         xl: '0px 39px 26px rgba(24, 24, 27, 0.05), 0px 20px 13px rgba(24, 24, 27, 0.04), 0px 9px 7px rgba(16, 24, 40, 0.03), 0px 2px 4px rgba(16, 24, 40, 0.02)',
         '2xl':

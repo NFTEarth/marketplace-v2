@@ -20,16 +20,16 @@ import {
   darkTheme as reservoirDarkTheme,
   lightTheme as reservoirLightTheme,
   ReservoirKitTheme,
-  CartProvider
+  CartProvider,
 } from '@nftearth/reservoir-kit-ui'
 import { FC, useEffect, useState } from 'react'
 import { HotkeysProvider } from 'react-hotkeys-hook'
 import ToastContextProvider from 'context/ToastContextProvider'
 import supportedChains from 'utils/chains'
-import {useMarketplaceChain, useMounted} from 'hooks'
+import { useMarketplaceChain, useMounted } from 'hooks'
 import ChainContextProvider from 'context/ChainContextProvider'
 import AnalyticsProvider from 'components/AnalyticsProvider'
-import Head from "next/head";
+import Head from 'next/head'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -173,22 +173,23 @@ function MyApp({
                   <ToastContextProvider>
                     <FunctionalComponent {...pageProps} />
                   </ToastContextProvider>
-                  {(marketplaceChain.id === 42161 && isMounted) && (
+                  {marketplaceChain.id === 42161 && isMounted && (
                     <div>
-                      <style jsx>{`
-                        p {
-                          position: fixed;
-                          top: 110px;
-                          left: 10px;
-                          padding: 10px;
-                          background: #fff;
-                          color: orange;
-                          font-size: small;
-                          width: 300px;
-                          border-radius: 10px;
-                          text-align: center;
-                        }
-                      `}
+                      <style jsx>
+                        {`
+                          p {
+                            position: fixed;
+                            top: 110px;
+                            left: 10px;
+                            padding: 10px;
+                            background: #fff;
+                            color: orange;
+                            font-size: small;
+                            width: 300px;
+                            border-radius: 10px;
+                            text-align: center;
+                          }
+                        `}
                       </style>
                     </div>
                   )}
