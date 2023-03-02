@@ -1,7 +1,7 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import { Text, Flex, Box } from 'components/primitives'
 import Layout from 'components/Layout'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useMarketplaceChain, useMounted } from 'hooks'
 import { paths } from '@nftearth/reservoir-sdk'
 import { useCollections } from '@nftearth/reservoir-kit-ui'
@@ -13,6 +13,7 @@ import { useTheme } from 'next-themes'
 import { LeaderboardTable } from 'components/leaderboard/LeaderboardTable'
 import { PointsTable } from 'components/leaderboard/PointsTable'
 import { data } from 'components/leaderboard/enums'
+import { Loader } from 'components/loader'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -25,6 +26,14 @@ const LeaderboardPage: NextPage<Props> = ({ ssr }) => {
     normalizeRoyalties: NORMALIZE_ROYALTIES,
     sortBy: 'allTimeVolume',
   }
+  const [width, setWidth] = useState(20)
+  useEffect(() => {
+    const id = setInterval(() => setWidth((width) => width + 5), 1000)
+
+    return () => {
+      clearInterval(id)
+    }
+  }, [])
 
   // const { data, hasNextPage, fetchNextPage, isFetchingPage, isValidating } =
   //   useCollections(
@@ -63,10 +72,24 @@ const LeaderboardPage: NextPage<Props> = ({ ssr }) => {
           direction="column"
           css={{
             height: '100%',
-            width: '100%',
           }}
         >
           <Text
+            style={{
+              '@initial': 'h3',
+              '@lg': 'h2',
+            }}
+            css={{
+              lineHeight: 1.2,
+              letterSpacing: 2,
+              color: '$gray10',
+              marginBottom: '20px',
+            }}
+          >
+            Loading...
+          </Text>
+          <Loader width={width} percent={25} />
+          {/* <Text
             style={{
               '@initial': 'h3',
               '@lg': 'h2',
@@ -77,7 +100,7 @@ const LeaderboardPage: NextPage<Props> = ({ ssr }) => {
           </Text>
           <Text css={{ color: '$gray10' }}>
             This page is under construction
-          </Text>
+          </Text> */}
         </Flex>
         {/* <Flex
           align="center"

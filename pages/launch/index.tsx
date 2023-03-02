@@ -1,9 +1,19 @@
 import { Text, Flex, Box } from 'components/primitives'
 import { useMediaQuery } from 'react-responsive'
 import Layout from 'components/Layout'
+import { Loader } from 'components/loader'
+import { useState, useEffect } from 'react'
 
 const LaunchPadPage = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 960px)' })
+  const [width, setWidth] = useState(20)
+  useEffect(() => {
+    const id = setInterval(() => setWidth((width) => width + 5), 1000);
+
+    return () => {
+      clearInterval(id);
+    };
+  }, []);
 
   return (
     <Layout>
@@ -22,9 +32,19 @@ const LaunchPadPage = () => {
           direction='column'
           css={{
             height: '100%',
-            width: '100%',
+       
           }}>
-          <Text
+                      <Text
+            style={{
+              '@initial': 'h3',
+              '@lg': 'h2',
+            }}
+            css={{ lineHeight: 1.2, letterSpacing: 2, color: '$gray10', marginBottom: '20px' }}
+          >
+           Loading...
+          </Text>
+            <Loader width={width} percent={25}/>
+          {/* <Text
             style={{
               '@initial': 'h3',
               '@lg': 'h2',
@@ -35,7 +55,7 @@ const LaunchPadPage = () => {
           </Text>
           <Text css={{ color: '$gray10' }}>
             This page is under construction
-          </Text>
+          </Text> */}
         </Flex>
       </Box>
     </Layout>
