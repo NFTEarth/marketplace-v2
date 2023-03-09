@@ -58,6 +58,8 @@ const ProfilePage: NextPage<Props> = ({ address, ssr, ensName }) => {
   const banner = profile?.twitter_banner || profile?.discord_banner
   const [tokenFiltersOpen, setTokenFiltersOpen] = useState(true)
   const [activityFiltersOpen, setActivityFiltersOpen] = useState(true)
+  const [showDialog, setShowDialog] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
   const [filterCollection, setFilterCollection] = useState<string | undefined>(
     undefined
   )
@@ -110,6 +112,21 @@ const ProfilePage: NextPage<Props> = ({ address, ssr, ensName }) => {
     fallbackData: filterCollection ? undefined : ssrCollections,
   })
 
+  const handleAvatarClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  }
+
+  const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files && event.target.files[0];
+    setShowDialog(false)
+  }
+
+  const handleDialogClose = () => {
+    setShowDialog(false)
+  }
+
   useEffect(() => {
     const isVisible = !!loadMoreObserver?.isIntersecting
     if (isVisible) {
@@ -147,12 +164,13 @@ const ProfilePage: NextPage<Props> = ({ address, ssr, ensName }) => {
         <Flex justify="between">
           <Flex direction="column">
             {avatar ? (
-              <Avatar size="xxxl" corners="rounded" src={avatar} />
+              <Avatar size="xxxl" corners="rounded" src={avatar} onClick={handleAvatarClick} />
             ) : (
               <Jazzicon
                 diameter={240}
                 paperStyles={{ borderRadius: '10px' }}
                 seed={jsNumberForAddress(address as string)}
+                onClick={handleAvatarClick}
               />
             )}
             <Flex direction="column" css={{ marginTop: '$2', gap: '$3' }}>
