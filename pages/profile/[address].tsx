@@ -4,7 +4,7 @@ import {
   InferGetStaticPropsType,
   NextPage,
 } from 'next'
-import {Text, Flex, Box, Grid, Button} from 'components/primitives'
+import {Text, Flex, Box, Grid, Button, Input} from 'components/primitives'
 import { paths } from '@nftearth/reservoir-sdk'
 import Layout from 'components/Layout'
 import fetcher, { basicFetcher } from 'utils/fetcher'
@@ -14,7 +14,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Avatar } from 'components/primitives/Avatar'
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCopy, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { faCopy, faMagnifyingGlass, faPen  } from '@fortawesome/free-solid-svg-icons'
 import { faTwitter, faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { TabsList, TabsTrigger, TabsContent } from 'components/primitives/Tab'
 import * as Tabs from '@radix-ui/react-tabs'
@@ -58,8 +58,11 @@ const ProfilePage: NextPage<Props> = ({ address, ssr, ensName }) => {
   const banner = profile?.twitter_banner || profile?.discord_banner
   const [tokenFiltersOpen, setTokenFiltersOpen] = useState(true)
   const [activityFiltersOpen, setActivityFiltersOpen] = useState(true)
-  const [showDialog, setShowDialog] = useState(false)
-  const fileInputRef = useRef<HTMLInputElement | null>(null)
+
+  const profileImgRef = useRef<HTMLInputElement | null>(null)
+  const bannerImgRef = useRef<HTMLInputElement | null>(null)
+  const userRef = useRef<HTMLInputElement | null>(null)
+
   const [filterCollection, setFilterCollection] = useState<string | undefined>(
     undefined
   )
@@ -112,20 +115,46 @@ const ProfilePage: NextPage<Props> = ({ address, ssr, ensName }) => {
     fallbackData: filterCollection ? undefined : ssrCollections,
   })
 
-  const handleAvatarClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
+  // Update Profile image
+  const handleProfileImgBtnClick = () => {
+    if (profileImgRef.current) {
+      profileImgRef.current.click();
     }
   }
 
-  const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleProfileImgChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
-    setShowDialog(false)
+
+    if (file) {
+      
+      // Your Upload Code goes here
+
+    }
   }
 
-  const handleDialogClose = () => {
-    setShowDialog(false)
+  // Update Banner Image
+  const handleBannerImgBtnClick = () => {
+    if (bannerImgRef.current) {
+      bannerImgRef.current.click();
+    }
   }
+
+  const handleBannerImgChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files && event.target.files[0];
+    
+    if (file) {
+
+      // Your Upload Code goes here
+
+    }
+  }
+
+  // Update Username
+  const saveUserName = () => {
+    const userName = userRef.current?.value;
+    // Your code goes here.
+    
+  };
 
   useEffect(() => {
     const isVisible = !!loadMoreObserver?.isIntersecting
@@ -159,21 +188,94 @@ const ProfilePage: NextPage<Props> = ({ address, ssr, ensName }) => {
           '@sm': {
             px: '$5',
           },
+          position: 'relative'
         }}
       >
+        <Box
+          css={{
+            position: 'absolute',
+            transform: 'translate(-50%, -50%)',
+            width: '40px',
+            height: '40px',
+            backgroundColor: '$gray3',
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            transition: '0.2s',
+            "@xs": {
+              top: '30px',
+              right: '20px'
+            },
+            "@md": {
+              top: '50%',
+              left: '50%',
+            },
+            "&:hover": {
+              backgroundColor: '$gray8',
+            }
+          }}
+          onClick={handleBannerImgBtnClick}
+        >
+          <FontAwesomeIcon icon={faPen} width={16} height={16} />
+        </Box>
+        <input
+          type="file"
+          accept="image/*"
+          ref={bannerImgRef}
+          style={{ display: 'none' }} // Hide the input element from view
+          onChange={handleBannerImgChange}
+        />
         <Flex justify="between">
           <Flex direction="column">
-            {avatar ? (
-              <Avatar size="xxxl" corners="rounded" src={avatar} onClick={handleAvatarClick} />
-            ) : (
-              <Jazzicon
-                diameter={240}
-                paperStyles={{ borderRadius: '10px' }}
-                seed={jsNumberForAddress(address as string)}
-                onClick={handleAvatarClick}
-              />
-            )}
+            <Box css={{position: 'relative'}}>
+              {avatar ? (
+                <Avatar size="xxxl" corners="rounded" src={avatar} />
+              ) : (
+                <Jazzicon
+                  diameter={240}
+                  paperStyles={{ borderRadius: '10px' }}
+                  seed={jsNumberForAddress(address as string)}
+                />
+              )}
+              <Box
+                css={{
+                  position: 'absolute',
+                  top: '10px',
+                  right: '10px',
+                  width: '40px',
+                  height: '40px',
+                  backgroundColor: '$gray3',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  transition: '0.2s',
+                  "&:hover": {
+                    backgroundColor: '$gray8',
+                  }
+                }}
+                onClick={handleProfileImgBtnClick}
+              >
+                <FontAwesomeIcon icon={faPen} width={16} height={16} />
+              </Box>
+            </Box>
+            <input
+              type="file"
+              accept="image/*"
+              ref={profileImgRef}
+              style={{ display: 'none' }} // Hide the input element from view
+              onChange={handleProfileImgChange}
+            />
             <Flex direction="column" css={{ marginTop: '$2', gap: '$3' }}>
+              <Input
+                css={{ fontWeight: 'bold', width: '150px' }}
+                ref={userRef}
+                placeholder='Input Username'
+              />
+              <Button css={{width: '100px'}} onClick={saveUserName}>Save</Button>
               <Text style="h5">{ensName ? ensName : shortAddress}</Text>
               <CopyText text={address as string}>
                 <Flex css={{ cursor: 'pointer' }}>
@@ -464,7 +566,7 @@ export const getStaticProps: GetStaticProps<{
   const tokens: Record<number, any> = {}
   responses.forEach((response) => {
     if (response.status === 'fulfilled') {
-      const url = new URL(response.value.response.url)
+      const url = new URL(`https://localhost:3000/${response.value.response.url}`)
       if (url.pathname.includes('collections')) {
         collections[DefaultChain.id] = response.value.data
       } else if (url.pathname.includes('tokens')) {
