@@ -292,7 +292,19 @@ const ProfilePage: NextPage<Props> = ({ address, ssr, ensName }) => {
               </Flex>
             </Flex>
           </Flex>
-          <Flex align="end" justify="end" direction="column" css={{ gap: 24 }}>
+          <Flex
+            align="end"
+            justify="end"
+            direction="column"
+            css={{
+              gap: 24,
+              "@xs": {
+                marginLeft: '-50px',
+              },
+              "@lg": {
+                marginLeft: '0',
+              }
+            }}>
             <Flex css={{ gap: 24 }}>
               {profile?.twitter_id && (
                 <Link href={`https://twitter.com/${profile?.twitter_username}`}>
@@ -305,12 +317,56 @@ const ProfilePage: NextPage<Props> = ({ address, ssr, ensName }) => {
                 </Link>
               )}
             </Flex>
-            <Flex css={{ gap: 24 }}>
+            <Flex css={{
+              gap: 24,
+              "@xs": {
+                display: 'block'
+              },
+              "@lg": {
+                display: 'flex'
+              },
+            }}>
               {(address === myAddress) && (
-                <Button as="a" color="ghost" href={`/api/social/twitter?wallet=${myAddress}`} size="small">{!profile?.twitter_id ? 'Connect Twitter' : 'Re-Connect Twitter'}</Button>
+                <Button
+                  as="a"
+                  color="ghost"
+                  href={`/api/social/twitter?wallet=${myAddress}`}
+                  size="small"
+                  css={{
+                    textAlign: 'center',
+                    padding: '15px 20px',
+                    backgroundColor: '$gray5',
+                    "&:hover": {
+                      backgroundColor: '$gray8'
+                    }
+                  }}
+                >
+                  <FontAwesomeIcon icon={faTwitter} size="xl" />{!profile?.twitter_id ? 'Connect Twitter' : 'Re-Connect Twitter'}
+                </Button>
               )}
               {(address === myAddress) && (
-                <Button as="a" color="ghost" href={`/api/social/discord?wallet=${myAddress}`} size="small">{!profile?.discord_id ? 'Connect Discord' : 'Re-Connect Discord'}</Button>
+                <Button
+                  as="a"
+                  color="ghost"
+                  href={`/api/social/discord?wallet=${myAddress}`}
+                  size="small"
+                  css={{
+                    textAlign: 'center',
+                    padding: '15px 20px',
+                    backgroundColor: '$gray5',
+                    "&:hover": {
+                      backgroundColor: '$gray8'
+                    },
+                    "@xs": {
+                      marginTop: '10px',
+                    },
+                    "@lg": {
+                      marginTop: '0',
+                    }
+                  }}
+                >
+                  <FontAwesomeIcon icon={faDiscord} size="xl" />{!profile?.discord_id ? 'Connect Discord' : 'Re-Connect Discord'}
+                </Button>
               )}
             </Flex>
           </Flex>
