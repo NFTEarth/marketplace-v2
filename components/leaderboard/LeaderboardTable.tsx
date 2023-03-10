@@ -85,7 +85,6 @@ export const LeaderboardTable: FC<Props> = ({ data }) => {
           overflowY: 'auto',
           flexGrow: 1,
           flexShrink: 1,
-          flexShrink: 1,
           alignItems: 'stretch'
         }}
       >
@@ -97,7 +96,9 @@ export const LeaderboardTable: FC<Props> = ({ data }) => {
           {profile && (
             <LeaderboardTableRow
               key={profile.id}
-              rank={data.map((e: any) => e.wallet.toLowerCase()).indexOf(address?.toLowerCase()) + 1}
+              rank={filteredData.findIndex(
+                (item: any) => item.wallet.toLowerCase() === address?.toLowerCase()
+              ) + 1}
               username="You"
               listingExp={formatNumber(profile.listingExp, 2)}
               offerExp={formatNumber(profile.offerExp, 2)}
@@ -112,7 +113,13 @@ export const LeaderboardTable: FC<Props> = ({ data }) => {
             .map((item: any, i: number) => (
               <LeaderboardTableRow
                 key={`leaderboard-${i}`}
-                rank={i + 1}
+                rank={
+                  item.wallet.toLowerCase() === address?.toLowerCase()
+                    ? filteredData.findIndex(
+                        (item: any) => item.wallet.toLowerCase() === address?.toLowerCase()
+                      ) + 1
+                    : i + 1
+                }
                 username={item.wallet}
                 listingExp={formatNumber(item.listingExp, 2)}
                 offerExp={formatNumber(item.offerExp, 2)}
