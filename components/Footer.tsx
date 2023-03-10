@@ -157,7 +157,8 @@ export const Footer = () => {
             </Button>
           </a>
         </Flex>
-        <Box css={{ marginTop: 10 }}>
+        <Flex>
+        <Box css={{ marginTop: 40, marginRight: 30 }}>
           <a href="https://aws.amazon.com/what-is-cloud-computing">
             <img
               height="100"
@@ -175,6 +176,8 @@ export const Footer = () => {
             alt="Alchemy Supercharged"
           />
         </a>
+        </Flex>
+      
       </Flex>
     </Flex>
   )

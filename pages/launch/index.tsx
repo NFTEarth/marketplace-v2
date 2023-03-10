@@ -504,7 +504,6 @@ const LaunchpadDeployPage = () => {
             <Button
               type="submit"
               size="small"
-              color="primary"
               disabled={step !== 0}
               css={{
                 marginTop: 8,
@@ -513,6 +512,7 @@ const LaunchpadDeployPage = () => {
                 justifyItems: 'center',
                 px: '$6',
                 py: '$3',
+                background: '#58AD77 !important',
               }}
             >
               Deploy Contract

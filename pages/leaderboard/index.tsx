@@ -3,28 +3,26 @@ import { Text, Flex, Box } from 'components/primitives'
 import Layout from 'components/Layout'
 import { useTheme } from 'next-themes'
 import { LeaderboardTable } from 'components/leaderboard/LeaderboardTable'
-import useLeaderboard from "../../hooks/useLeaderboard";
-import {useEffect, useRef} from "react";
-import {useIntersectionObserver} from "usehooks-ts";
-import {useMounted} from "../../hooks";
+import useLeaderboard from '../../hooks/useLeaderboard'
+import { useEffect, useRef } from 'react'
+import { useIntersectionObserver } from 'usehooks-ts'
+import { useMounted } from '../../hooks'
 
 const LeaderboardPage: NextPage = () => {
   const { theme } = useTheme()
   const isMounted = useMounted()
   const loadMoreRef = useRef<HTMLDivElement | null>(null)
   const loadMoreObserver = useIntersectionObserver(loadMoreRef, {})
-  const {
-    data,
-    isValidating,
-    isFetchingPage,
-    fetchNextPage
-  } = useLeaderboard({
-    limit: 1000
-  }, {
-    revalidateFirstPage: true,
-    revalidateOnFocus: true,
-    refreshInterval: 10_000
-  })
+  const { data, isValidating, isFetchingPage, fetchNextPage } = useLeaderboard(
+    {
+      limit: 1000,
+    },
+    {
+      revalidateFirstPage: true,
+      revalidateOnFocus: true,
+      refreshInterval: 10_000,
+    }
+  )
 
   useEffect(() => {
     const isVisible = !!loadMoreObserver?.isIntersecting
@@ -174,8 +172,8 @@ const LeaderboardPage: NextPage = () => {
                   textAlign: 'center',
                 }}
               >
-                Increase your position on the leaderboard by completing quests!
-                💰
+                Get to the top of the leaderboard by boosting your XP! Bids on
+                top collections closer to the floor get more rewards. 💰
               </Text>
             </Box>
           </Box>
@@ -190,7 +188,7 @@ const LeaderboardPage: NextPage = () => {
             }}
           >
             <LeaderboardTable data={data} />
-            <Box ref={loadMoreRef} css={{ height: 20 }}/>
+            <Box ref={loadMoreRef} css={{ height: 20 }} />
           </Flex>
         </Flex>
       </Box>
