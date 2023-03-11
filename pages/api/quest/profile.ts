@@ -7,7 +7,7 @@ const handleProfile = async (req: NextApiRequest, res: NextApiResponse) => {
   const { address } = req.query;
 
   const accountData = await account.findOne({
-    wallet: address
+    wallet: (address as string).toLowerCase()
   }, {
     projection: {
       twitter_oauth_token: 0,
