@@ -297,6 +297,7 @@ const CollectionPage: NextPage<Props> = ({ id, ssr }) => {
                           justifyContent: 'center',
                           '@sm': {
                             maxWidth: '220px',
+                            background: '$primary14 !important'
                           },
                         }}
                       />
