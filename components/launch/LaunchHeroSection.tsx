@@ -36,22 +36,24 @@ const LearnHeroSection: FC = () => {
           },
         }}
       >
-        <Text
-          css={{ color: '$whiteA12', lineHeight: 1.2 }}
-          style={{
-            '@initial': 'h3',
-            '@lg': 'h1',
-          }}
-        >
-          NFTEarth Launchpad
-        </Text>
+         <Flex css={{
+        marginTop: '-50px',
+        '@xs': {
+          margin: '0 auto',
+        },
+        '@bp1000': {
+          margin: 0,
+        },
+      }}>
+        <img src="/images/nft_launchpad.png" />
+        <Box css={{ marginTop: '50px'}}>
         <Text
           style={{
             '@initial': 'subtitle2',
             '@lg': 'subtitle1',
           }}
           css={{
-            lineHeight: 1.5,
+            lineHeight: 2,
             width: '100%',
             marginTop: '$3',
             '@lg': {
@@ -62,13 +64,17 @@ const LearnHeroSection: FC = () => {
         >
           Deploy your own NFT collection with NFTEarth’s launchpad. 
           </Text>
+          <Box>
+
+     
           <Text
           style={{
             '@initial': 'subtitle2',
             '@lg': 'subtitle1',
           }}
           css={{
-            lineHeight: 1.5,
+            lineHeight: 2,
+            marginTop: '150px',
             width: '100%',
             '@lg': {
               width: '100%',
@@ -80,6 +86,11 @@ const LearnHeroSection: FC = () => {
           the collection settings, minting details, metadata, artwork
           generation, and allowlist, all from the NFTEarth Hub. ❤️
         </Text>
+        </Box>
+        </Box>
+      </Flex>
+ 
+  
       </Flex>
       <Box
         css={{
