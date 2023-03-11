@@ -22,7 +22,7 @@ const handleOrderbookCancel = async (req: NextApiRequest, res: NextApiResponse) 
   const nft: ConsiderationItem[] | OfferItem[] = parameters.offer.filter(o => NFTItem.includes(o.itemType))
 
   const accountData = await account.findOne({
-    wallet: { $regex : `^${parameters.offerer}$`, '$options' : 'i'}
+    wallet: parameters.offerer.toLowerCase()
   }).catch(() => null)
 
   console.info(`Cancel order`, accountData, parameters)
@@ -36,7 +36,7 @@ const handleOrderbookCancel = async (req: NextApiRequest, res: NextApiResponse) 
     await redis.del(`list:${chainId}:${parameters.offerer}:${nft[0]?.token}:${nft[0]?.identifierOrCriteria}`)
 
     await account.updateOne({
-      wallet: { $regex : `^${parameters.offerer}$`, '$options' : 'i'}
+      wallet: parameters.offerer.toLowerCase()
     }, {
       $inc: {
         listingExp: -canceledReward,

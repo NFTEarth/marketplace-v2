@@ -34,11 +34,11 @@ const handleOrderbookListings = async (req: NextApiRequest, res: NextApiResponse
   const chain = supportedChains.find(c => c.id === chainId)
 
   const accountData = await account.findOne({
-    wallet: { $regex : `^${parameters.offerer}$`, '$options' : 'i'}
+    wallet: parameters.offerer.toLowerCase()
   }).catch(() => null)
 
   const questEntry = await entry.findOne({
-    wallet: { $regex : `^${parameters.offerer}$`, '$options' : 'i'}
+    wallet: parameters.offerer.toLowerCase()
   }).catch(() => null) || []
 
   const nft: OfferItem[] = parameters.offer.filter(o => NFTItem.includes(o.itemType))
@@ -103,7 +103,7 @@ const handleOrderbookListings = async (req: NextApiRequest, res: NextApiResponse
     await redis.setex(`list:${chainId}:${parameters.offerer}:${nft[0]?.token}:${nft[0]?.identifierOrCriteria}`, period, cleanedReward)
 
     await account.updateOne({
-      wallet: { $regex : `^${parameters.offerer}$`, '$options' : 'i'}
+      wallet: parameters.offerer.toLowerCase()
     }, {
       $inc: {
         listingExp: cleanedReward,
