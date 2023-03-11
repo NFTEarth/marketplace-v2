@@ -628,7 +628,7 @@ const handleQuestEntry = async (req: NextApiRequest, res: NextApiResponse) => {
       discord_username: accountData?.discord_username,
       twitter_id: accountData?.twitter_id,
       twitter_username: accountData?.twitter_username,
-      wallet: accountData?.wallet,
+      wallet: accountData?.wallet.toLowerCase(),
       entry_role: (tasks.find(r => r.type === 'discord') as QuestDiscord)?.entryRole,
       status: 'complete'
     })
