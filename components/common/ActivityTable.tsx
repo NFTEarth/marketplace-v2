@@ -386,7 +386,7 @@ const ActivityTableRow: FC<ActivityTableRowProps> = ({ activity }) => {
               <Text
                 style="subtitle3"
                 css={{
-                  color: '$primary11',
+                  color: '$primary14',
                   '&:hover': {
                     color: '$primary10',
                   },
@@ -410,7 +410,7 @@ const ActivityTableRow: FC<ActivityTableRowProps> = ({ activity }) => {
               <Text
                 style="subtitle3"
                 css={{
-                  color: '$primary11',
+                  color: '$primary14',
                   '&:hover': {
                     color: '$primary10',
                   },
