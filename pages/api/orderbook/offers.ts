@@ -12,6 +12,7 @@ const NFTItem = [ItemType.ERC721, ItemType.ERC1155, ItemType.ERC721_WITH_CRITERI
 const PaymentItem = [ItemType.ERC20, ItemType.NATIVE]
 const account = db.collection('account')
 const entry = db.collection('quest_entry')
+
 const EXTRA_REWARD_PER_HOUR_PERIOD=0.00000001
 const chainToNFTE: Record<number, string> = {
   10: '0xc96f4f893286137ac17e07ae7f217ffca5db3ab6',
@@ -58,8 +59,7 @@ const handleOrderbookOffers = async (req: NextApiRequest, res: NextApiResponse) 
   const collections: paths["/collections/v5"]["get"]["responses"]["200"]["schema"]["collections"] = data?.collections || []
   const collection = collections?.[0]
 
-  // Finish all the quest
-  if (accountData && collection && accountData.exp >= 900) {
+  if (accountData && collection) {
     const isNFTE = payment[0].token.toLowerCase() === chainToNFTE[chainId];
     let value = +ethers.utils.formatEther(payment[0]?.startAmount || '0').toString()
 
