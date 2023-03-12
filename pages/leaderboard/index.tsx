@@ -189,7 +189,7 @@ const LeaderboardPage: NextPage = () => {
               marginTop: '50px',
             }}
           >
-            <LeaderboardTable data={data} />
+            <LeaderboardTable data={data.slice(0,1500)} />
             <Box ref={loadMoreRef} css={{ height: 20 }}/>
           </Flex>
         </Flex>
