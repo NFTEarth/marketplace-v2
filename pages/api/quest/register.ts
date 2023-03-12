@@ -7,12 +7,12 @@ const handleQuestRegister = async (req: NextApiRequest, res: NextApiResponse) =>
   const { wallet } = req.query;
 
   const existingAccount = await account.findOne({
-    wallet: wallet
+    wallet: (wallet as string).toLowerCase()
   }).catch(() => null);
 
   if (!existingAccount) {
     await account.insertOne({
-      wallet: wallet,
+      wallet: (wallet as string).toLowerCase(),
       exp: 0
     })
   }

@@ -8,7 +8,7 @@ const questEntryListHandler = async (req: NextApiRequest, res: NextApiResponse) 
   const { wallet } = req.query;
 
   const accountData = await account.findOne({
-    wallet: wallet
+    wallet: (wallet as string).toLowerCase()
   })
 
   const cursor = await questEntry.find( {
