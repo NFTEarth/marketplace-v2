@@ -60,7 +60,7 @@ const resourcesSectionLinks = [
   },
 ]
 
-const companySectionLinks = [
+const protocolSectionLinks = [
   {
     name: 'Terms',
     href: '/terms',
@@ -98,8 +98,8 @@ export const Footer = () => {
           </Flex>
         </Flex>
         <Flex direction="column">
-          <SectionTitle title="Company" />
-          {companySectionLinks.map((props) => (
+          <SectionTitle title="Protocol" />
+          {protocolSectionLinks.map((props) => (
             <SectionLink key={props.name} {...props} />
           ))}
         </Flex>
@@ -163,7 +163,7 @@ export const Footer = () => {
               height="100"
               width="100"
               src="/images/powered-by-aws-white.png"
-              alt="Powered by AWS Cloud Computing"
+              alt="Powered by AWS"
             />
           </a>
         </Box>
@@ -171,8 +171,8 @@ export const Footer = () => {
           <img
             id="badge-button"
             style={{ width: 240, height: 53, marginTop: '30px' }}
-            src="https://static.alchemyapi.io/images/marketing/badge.png"
-            alt="Alchemy Supercharged"
+            src="https://www.alchemy.com/"
+            alt="Powered by Alchemy"
           />
         </a>
       </Flex>

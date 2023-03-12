@@ -53,7 +53,7 @@ const QuestsSection: FC = () => {
             },
           }}
         >
-         Earn XP, Rewards and $NFTE
+         Earn XP, NFT Rewards and $NFTE!
       </Text>
       <Box css={{
         marginTop: '-50px',
