@@ -1,6 +1,6 @@
 import Link from 'next/link'
-
-import { Button, Flex, Grid, Text } from './primitives'
+import Image from 'next/image'
+import { Box, Button, Flex, Grid, Text } from './primitives'
 import { FC } from 'react'
 import { useTheme } from 'next-themes'
 
@@ -39,6 +39,7 @@ const HeroSection: FC<IProp> = ({ hideLink }) => {
           },
         }}
       >
+        <Flex>
         <Text
           style={{
             '@initial': 'h2',
@@ -47,8 +48,18 @@ const HeroSection: FC<IProp> = ({ hideLink }) => {
           as="h1"
           css={{ color: '$whiteA12', lineHeight: 1.2 }}
         >
-          Let the Quest begin!
+          NFTEarth 
         </Text>
+        <Box css={{ width: 60, cursor: 'pointer', marginLeft: 10, marginTop: 10 }}>
+              <Image
+                src="/nftearth-icon-new.png"
+                width={68}
+                height={68}
+                alt="NFTEarth Logo"
+              />
+            </Box>
+        </Flex>
+
         <Text
           style="subtitle1"
           css={{

@@ -67,75 +67,9 @@ const QuestsPage: NextPage = () => {
         }}
       >
         <QuestSecion />
-        <Flex css={{ my: '$5', gap: 65 }} direction="column">
-          {isMounted && (
-            <Dialog.Root defaultOpen open={open} modal>
-              <Dialog.Portal>
-                <AnimatedOverlay
-                  style={{
-                    position: 'fixed',
-                    zIndex: 1000,
-                    inset: 0,
-                    width: '100vw',
-                    height: '100vh',
-                    backgroundColor: 'rgba(0, 0, 0, 0.9)',
-                    backdropFilter: '20px',
-                    opacity: '0.9',
-                  }}
-                  onClick={() => setOpen( false)}
-                />
-                <AnimatedContent
-                  style={{
-                    outline: 'unset',
-                    position: 'fixed',
-                    zIndex: 1000,
-                    transform: 'translate(-50%, 10%)',
-                    height: '70vh',
-                    width: '70vw'
-                  }}
-                >
-                  <Flex
-                    justify="between"
-                    css={{
-                      position: 'relative',
-                      borderTop: '1px solid $blackA11',
-                      borderStyle: 'solid',
-                      pt: '$5',
-                      background: '$gray1',
-                      padding: '$5',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      gap: '20px',
-                      '@bp600': {
-                        flexDirection: 'column',
-                        gap: '20px',
-                      },
-                    }}
-                  >
-                    <Dialog.Close asChild>
-                      <button
-                        style={{
-                          position: 'absolute',
-                          top: 10,
-                          right: 15,
-                        }}
-                        onClick={() => setOpen(false)}
-                        className="IconButton"
-                        aria-label="Close"
-                      >
-                        <FontAwesomeIcon icon={faClose} size="xl" />
-                      </button>
-                    </Dialog.Close>
-                    <Box>{displayContent(quest)}</Box>
-                  </Flex>
-                </AnimatedContent>
-              </Dialog.Portal>
-            </Dialog.Root>
-          )}
-        </Flex>
         <Box>
           <Text
-            css={{ marginBottom: '15px', marginLeft: '5px' }}
+            css={{ mb: 15, ml: 5, mt: 30 }}
             style="h4"
             as="h4"
           >
@@ -143,6 +77,70 @@ const QuestsPage: NextPage = () => {
           </Text>
           {isMounted && <QuestsOneTime setOpen={setOpen} setQuest={setQuest} />}
         </Box>
+        {isMounted && (
+          <Dialog.Root defaultOpen open={open} modal>
+            <Dialog.Portal>
+              <AnimatedOverlay
+                style={{
+                  position: 'fixed',
+                  zIndex: 1000,
+                  inset: 0,
+                  width: '100vw',
+                  height: '100vh',
+                  backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                  backdropFilter: '20px',
+                  opacity: '0.9',
+                }}
+                onClick={() => setOpen( false)}
+              />
+              <AnimatedContent
+                style={{
+                  outline: 'unset',
+                  position: 'fixed',
+                  zIndex: 1000,
+                  transform: 'translate(-50%, 10%)',
+                  height: '70vh',
+                  width: '70vw'
+                }}
+              >
+                <Flex
+                  justify="between"
+                  css={{
+                    position: 'relative',
+                    borderTop: '1px solid $blackA11',
+                    borderStyle: 'solid',
+                    pt: '$5',
+                    background: '$gray1',
+                    padding: '$5',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '20px',
+                    '@bp600': {
+                      flexDirection: 'column',
+                      gap: '20px',
+                    },
+                  }}
+                >
+                  <Dialog.Close asChild>
+                    <button
+                      style={{
+                        position: 'absolute',
+                        top: 10,
+                        right: 15,
+                      }}
+                      onClick={() => setOpen(false)}
+                      className="IconButton"
+                      aria-label="Close"
+                    >
+                      <FontAwesomeIcon icon={faClose} size="xl" />
+                    </button>
+                  </Dialog.Close>
+                  <Box>{displayContent(quest)}</Box>
+                </Flex>
+              </AnimatedContent>
+            </Dialog.Portal>
+          </Dialog.Root>
+        )}
       </Box>
     </Layout>
   )

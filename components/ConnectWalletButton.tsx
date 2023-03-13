@@ -24,6 +24,8 @@ export const ConnectWalletButton: FC<Props> = () => {
                     css={{
                       flex: 1,
                       justifyContent: 'center',
+                      background: '$primary13',
+                      color: 'black',
                       '&:hover': {
                         background: '$gray8',
                       },

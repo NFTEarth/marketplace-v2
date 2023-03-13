@@ -504,10 +504,10 @@ const LaunchpadDeployPage = () => {
             <Button
               type="submit"
               size="small"
-              color="primary"
               disabled={step !== 0}
               css={{
                 marginTop: 8,
+                background: '$primary14 !important',
                 justifyContent: 'center',
                 alignItems: 'center',
                 justifyItems: 'center',

@@ -276,6 +276,7 @@ export default ({
           buttonCss={{
             justifyContent: 'center',
             flex: 1,
+            background: '$primary14 !important'
           }}
           buttonProps={{
             corners: 'square',
@@ -287,6 +288,7 @@ export default ({
             width: 52,
             p: 0,
             justifyContent: 'center',
+            background: '$primary14 !important'
           }}
           buttonProps={{ corners: 'square' }}
         />

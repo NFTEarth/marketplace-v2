@@ -49,7 +49,7 @@ const BasicModal = ({
     if (response?.code === 200) {
       addToast?.({
         title: 'SUCCESS',
-        description: 'Exp Claimed',
+        description: 'XP Claimed!',
       })
     }
     setLoading(false)
@@ -142,7 +142,7 @@ const BasicModal = ({
                 marginBottom: '$3',
               }}
             >
-              Connect your Wallet First
+              Connect Wallet
             </Text>
             <ConnectWalletButton/>
           </Flex>
@@ -589,10 +589,9 @@ export const QuestBuyNFTInNFTEOnAnyChain = ({
             </Text>
 
             <Text style="subtitle1" css={{color: '$gray11'}}>
-              NB! Volume criteria should be fulfilled while Quest is active! Our
+              Volume criteria should be fulfilled while Quest is active! Our
               intention is to leave it open/active for at least 24h from
-              opening/activation, however, we leave the right to close it also
-              later (or earlier)!
+              opening/activation, however, reserve the right to close at our discretion.
             </Text>
 
             <Text style="subtitle2" css={{color: '$gray11'}}>
@@ -753,11 +752,11 @@ export const QuestMakeOfferForNFT = ({
               style={{'@initial': 'h6', '@lg': 'h4'}}
               css={{marginTop: '20px'}}
             >
-              Step 2: Make an offer for any NFT on sale
+              Step 2: Make an offer for any listed NFT
             </Text>
             <Text style="subtitle1" css={{color: '$gray11'}}>
               Click on the NFTs you want to make an offer for and click "Make
-              Offer" to make an offer for the the NFT on the marketplace
+              Offer" to make an offer for the the NFT!
             </Text>
 
             <Text
@@ -852,11 +851,11 @@ export const QuestLeaderboard = ({
               clicking List for Sale and adding sale parameters you are happy
               with. List it! Listing any NFT in any currency on any available
               chain counts! This quest is repeatable, list or bid as many as you
-              want to get more exp.
+              want, earn more XP!
             </Text>
 
             <Text style="subtitle2" css={{color: '$gray11'}}>
-              Exp will be automatically updated.
+              XP will be automatically added to your user profile on the Leaderboard.
             </Text>
           </Flex>
         </Flex>

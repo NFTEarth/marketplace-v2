@@ -101,7 +101,7 @@
   {
     "id": 8,
     "title": "Active NFT Trader",
-    "description": "Buy an NFT (or several) for total amount equal or over 0.1 $ETH on any NFTEarth supported blockchains in any supported currency.",
+    "description": "Buy NFT(s) for total amount equal or over 0.1 $ETH on any NFTEarth supported blockchains in any supported currency.",
     "type": "one-time",
     "tasks": [
       {
@@ -113,8 +113,8 @@
   },
   {
     "id": 9,
-    "title": "Rank higher on the leaderboard!",
-    "description": "Every listing and offer made on NFTEarth adds XP and thus help you to rank higher on leaderboard",
+    "title": "Climb the leaderboard by making Listings and Offers!",
+    "description": "Every listing and offer made on NFTEarth earns you XP to help you to rank higher on the leaderboard.",
     "type": "repeatable",
     "tasks": [],
     "exp": 0

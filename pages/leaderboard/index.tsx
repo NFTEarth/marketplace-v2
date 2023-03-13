@@ -120,7 +120,7 @@ const LeaderboardPage: NextPage = () => {
                 : 'none',
             }}
           >
-            9 Quests Leaderboard
+            XP Leaderboard
           </Text>
 
           <Box css={{ width: '100%' }}>
@@ -174,8 +174,7 @@ const LeaderboardPage: NextPage = () => {
                   textAlign: 'center',
                 }}
               >
-                Increase your position on the leaderboard by completing quests!
-                💰
+                Climb the Leaderboard by gaining XP!
               </Text>
             </Box>
           </Box>
@@ -189,7 +188,7 @@ const LeaderboardPage: NextPage = () => {
               marginTop: '50px',
             }}
           >
-            <LeaderboardTable data={data} />
+            <LeaderboardTable data={data.slice(0,1500)} />
             <Box ref={loadMoreRef} css={{ height: 20 }}/>
           </Flex>
         </Flex>
