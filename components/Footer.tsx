@@ -60,7 +60,7 @@ const resourcesSectionLinks = [
   },
 ]
 
-const companySectionLinks = [
+const protocolSectionLinks = [
   {
     name: 'Terms',
     href: '/terms',
@@ -98,8 +98,8 @@ export const Footer = () => {
           </Flex>
         </Flex>
         <Flex direction="column">
-          <SectionTitle title="Company" />
-          {companySectionLinks.map((props) => (
+          <SectionTitle title="Protocol" />
+          {protocolSectionLinks.map((props) => (
             <SectionLink key={props.name} {...props} />
           ))}
         </Flex>
@@ -116,7 +116,7 @@ export const Footer = () => {
         direction="column"
         css={{ alignItems: 'flex-start', '@bp600': { alignItems: 'flex-end' } }}
       >
-        <SectionTitle title="Join the community" />
+        <SectionTitle title="Community" />
         <Flex css={{ gap: '$4', mt: 16 }}>
           <a
             target="_blank"
@@ -167,12 +167,12 @@ export const Footer = () => {
             />
           </a>
         </Box>
-        <a href="#">
+        <a href="https://alchemy.com">
           <img
             id="badge-button"
             style={{ width: 240, height: 53, marginTop: '30px' }}
             src="https://static.alchemyapi.io/images/marketing/badge.png"
-            alt="Alchemy Supercharged"
+            alt="Powered by Alchemy"
           />
         </a>
       </Flex>

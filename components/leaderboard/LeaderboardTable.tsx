@@ -56,7 +56,7 @@ export const LeaderboardTable: FC<Props> = ({ data }) => {
           },
         }}
       >
-        <Text>Search Wallet</Text>
+        <Text>Search Wallet Address</Text>
         <Input
           onChange={(e) => {
             setSearchWallet(e.target.value)
