@@ -1,5 +1,6 @@
 import {useState, ChangeEvent, KeyboardEvent, useMemo, useEffect} from 'react'
 import { useTheme } from 'next-themes'
+import { useRouter } from 'next/router'
 import { useMediaQuery } from 'react-responsive'
 import { Text, Flex, Box, Input, Switch, Button } from 'components/primitives'
 import Layout from 'components/Layout'
@@ -24,6 +25,7 @@ import {truncateAddress} from "utils/truncate";
 import ChainToggle from "components/home/ChainToggle";
 
 const LaunchpadDeployPage = () => {
+  const router = useRouter()
   const { theme } = useTheme()
   const isMobile = useMediaQuery({ query: '(max-width: 960px)' })
   const { chain: activeChain } = useNetwork();
@@ -164,6 +166,10 @@ const LaunchpadDeployPage = () => {
   }
 
   useEffect(() => {
+    router.replace('/');
+  }, [])
+
+  useEffect(() => {
     if (isMounted && step > 1) {
       setOpen(true)
     } else {
@@ -173,7 +179,7 @@ const LaunchpadDeployPage = () => {
 
   return (
     <Layout>
-      <form onSubmit={handleDeployContract} autoComplete="off">
+      {/* <form onSubmit={handleDeployContract} autoComplete="off">
         <Box
           css={{
             p: 14,
@@ -661,7 +667,7 @@ const LaunchpadDeployPage = () => {
             </AnimatedContent>
           </Dialog.Portal>
         </Dialog.Root>
-      )}
+      )} */}
     </Layout>
   )
 }

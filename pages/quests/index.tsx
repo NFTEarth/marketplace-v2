@@ -7,7 +7,7 @@ import QuestSecion from 'components/quests/QuestsSection'
 import * as Dialog from '@radix-ui/react-dialog'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { AnimatedOverlay, AnimatedContent } from 'components/primitives/Dialog'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { faClose } from '@fortawesome/free-solid-svg-icons'
 import {
   QuestRegisterUserName,
@@ -20,9 +20,11 @@ import {
   QuestMakeOfferForNFT,
   QuestLeaderboard,
 } from 'components/quests/templates'
-import {useAccount} from "wagmi";
+import { useAccount } from "wagmi";
+import { useRouter } from 'next/router'
 
 const QuestsPage: NextPage = () => {
+  const router = useRouter();
   const isMounted = useMounted()
   const { address } = useAccount()
   const [open, setOpen] = useState(false)
@@ -55,9 +57,13 @@ const QuestsPage: NextPage = () => {
     }
   }
 
+  useEffect(() => {
+    router.replace('/');
+  }, [])
+
   return (
     <Layout>
-      <Box
+      {/* <Box
         css={{
           p: 24,
           height: '100%',
@@ -141,7 +147,7 @@ const QuestsPage: NextPage = () => {
             </Dialog.Portal>
           </Dialog.Root>
         )}
-      </Box>
+      </Box> */}
     </Layout>
   )
 }
