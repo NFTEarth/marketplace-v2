@@ -1,13 +1,14 @@
 import { NextPage } from 'next'
 import { Text, Flex, Box, Button } from 'components/primitives'
 import Layout from 'components/Layout'
-import {useMounted, useProfile, useQuestEntries} from 'hooks'
+import { useMounted, useProfile, useQuestEntries } from 'hooks'
+import { useRouter } from 'next/router'
 import QuestsOneTime from 'components/quests/QuestsOneTime'
 import QuestSecion from 'components/quests/QuestsSection'
 import * as Dialog from '@radix-ui/react-dialog'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { AnimatedOverlay, AnimatedContent } from 'components/primitives/Dialog'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { faClose } from '@fortawesome/free-solid-svg-icons'
 import {
   QuestRegisterUserName,
@@ -23,6 +24,7 @@ import {
 import {useAccount} from "wagmi";
 
 const QuestsPage: NextPage = () => {
+  const router = useRouter()
   const isMounted = useMounted()
   const { address } = useAccount()
   const [open, setOpen] = useState(false)
@@ -55,9 +57,13 @@ const QuestsPage: NextPage = () => {
     }
   }
 
+  useEffect(() => {
+    router.replace('/')
+  }, [])
+
   return (
     <Layout>
-      <Box
+      {/* <Box
         css={{
           p: 24,
           height: '100%',
@@ -141,7 +147,7 @@ const QuestsPage: NextPage = () => {
             </Dialog.Portal>
           </Dialog.Root>
         )}
-      </Box>
+      </Box> */}
     </Layout>
   )
 }

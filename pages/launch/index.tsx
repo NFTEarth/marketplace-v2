@@ -20,7 +20,8 @@ import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import {useMounted, useMarketplaceChain} from "hooks";
 import LoadingSpinner from "components/common/LoadingSpinner";
-import {truncateAddress} from "utils/truncate";
+import { truncateAddress } from "utils/truncate";
+import { useRouter } from 'next/router'
 import ChainToggle from "components/home/ChainToggle";
 
 const LaunchpadDeployPage = () => {
@@ -50,7 +51,7 @@ const LaunchpadDeployPage = () => {
   })
   const { setOpen: setConnectModalOpen, open: isConnectModalOpened } = useModal();
   const { isConnected } = useAccount()
-
+  const router = useRouter()
   const publicSupply = useMemo(() => {
     return +supply - +allowlistSupply - +reservedSupply;
   }, [supply, allowlistSupply, reservedSupply])
@@ -164,6 +165,10 @@ const LaunchpadDeployPage = () => {
   }
 
   useEffect(() => {
+    router.replace('/')
+  }, [])
+
+  useEffect(() => {
     if (isMounted && step > 1) {
       setOpen(true)
     } else {
@@ -173,7 +178,7 @@ const LaunchpadDeployPage = () => {
 
   return (
     <Layout>
-      <form onSubmit={handleDeployContract} autoComplete="off">
+      {/* <form onSubmit={handleDeployContract} autoComplete="off">
         <Box
           css={{
             p: 14,
@@ -661,7 +666,7 @@ const LaunchpadDeployPage = () => {
             </AnimatedContent>
           </Dialog.Portal>
         </Dialog.Root>
-      )}
+      )} */}
     </Layout>
   )
 }
