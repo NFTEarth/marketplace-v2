@@ -21,7 +21,8 @@ import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import {useMounted, useMarketplaceChain} from "hooks";
 import LoadingSpinner from "components/common/LoadingSpinner";
-import {truncateAddress} from "utils/truncate";
+import { truncateAddress } from "utils/truncate";
+import { useRouter } from 'next/router'
 import ChainToggle from "components/home/ChainToggle";
 
 const LaunchpadDeployPage = () => {
@@ -52,7 +53,7 @@ const LaunchpadDeployPage = () => {
   })
   const { setOpen: setConnectModalOpen, open: isConnectModalOpened } = useModal();
   const { isConnected } = useAccount()
-
+  const router = useRouter()
   const publicSupply = useMemo(() => {
     return +supply - +allowlistSupply - +reservedSupply;
   }, [supply, allowlistSupply, reservedSupply])
@@ -166,7 +167,7 @@ const LaunchpadDeployPage = () => {
   }
 
   useEffect(() => {
-    router.replace('/');
+    router.replace('/')
   }, [])
 
   useEffect(() => {

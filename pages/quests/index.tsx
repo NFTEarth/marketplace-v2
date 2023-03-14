@@ -1,7 +1,8 @@
 import { NextPage } from 'next'
 import { Text, Flex, Box, Button } from 'components/primitives'
 import Layout from 'components/Layout'
-import {useMounted, useProfile, useQuestEntries} from 'hooks'
+import { useMounted, useProfile, useQuestEntries } from 'hooks'
+import { useRouter } from 'next/router'
 import QuestsOneTime from 'components/quests/QuestsOneTime'
 import QuestSecion from 'components/quests/QuestsSection'
 import * as Dialog from '@radix-ui/react-dialog'
@@ -24,7 +25,7 @@ import { useAccount } from "wagmi";
 import { useRouter } from 'next/router'
 
 const QuestsPage: NextPage = () => {
-  const router = useRouter();
+  const router = useRouter()
   const isMounted = useMounted()
   const { address } = useAccount()
   const [open, setOpen] = useState(false)
@@ -56,10 +57,6 @@ const QuestsPage: NextPage = () => {
         return null
     }
   }
-
-  useEffect(() => {
-    router.replace('/');
-  }, [])
 
   return (
     <Layout>
