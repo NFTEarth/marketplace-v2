@@ -145,7 +145,7 @@ const HamburgerMenu = () => {
                 Collections
               </Text>
             </Link>
-            <Text
+            {/* <Text
               as="a"
               href="/quests"
               style="subtitle1"
@@ -158,8 +158,8 @@ const HamburgerMenu = () => {
               }}
             >
               Quests
-            </Text>
-            <Text
+            </Text> */}
+            {/* <Text
               as="a"
               href="/launch"
               style="subtitle1"
@@ -172,7 +172,7 @@ const HamburgerMenu = () => {
               }}
             >
               Launchpad
-            </Text>
+            </Text> */}
             <Text
                 as="a"
                 href="/leaderboard"
@@ -292,7 +292,7 @@ const HamburgerMenu = () => {
                   Collections
                 </Text>
               </Link>
-              <Text
+              {/* <Text
                 as="a"
                 href="/quests"
                 style="subtitle1"
@@ -305,8 +305,8 @@ const HamburgerMenu = () => {
                 }}
               >
                 Quests
-              </Text>
-              <Text
+              </Text> */}
+              {/* <Text
                 as="a"
                 href="/launch"
                 style="subtitle1"
@@ -319,7 +319,7 @@ const HamburgerMenu = () => {
                 }}
               >
                 Launchpad
-              </Text>
+              </Text> */}
               <Text
                 as="a"
                 href="/leaderboard"

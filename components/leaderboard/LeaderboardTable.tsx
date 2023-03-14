@@ -12,7 +12,7 @@ import {
 import { useAccount } from 'wagmi'
 import { useTheme } from 'next-themes'
 import {formatNumber} from "../../utils/numbers";
-import {useProfile} from "../../hooks";
+import { useProfile } from "../../hooks";
 
 type Props = {
   data: any
@@ -32,6 +32,7 @@ export const LeaderboardTable: FC<Props> = ({ data }) => {
   const filteredData = data?.filter((item: any) =>
     new RegExp(`${searchWallet}`, 'ig').test(item.wallet)
   )
+
 
   useEffect(() => {
     if (tableRef.current) {
