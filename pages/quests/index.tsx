@@ -22,7 +22,6 @@ import {
   QuestLeaderboard,
 } from 'components/quests/templates'
 import { useAccount } from "wagmi";
-import { useRouter } from 'next/router'
 
 const QuestsPage: NextPage = () => {
   const router = useRouter()

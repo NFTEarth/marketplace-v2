@@ -1,6 +1,5 @@
 import {useState, ChangeEvent, KeyboardEvent, useMemo, useEffect} from 'react'
 import { useTheme } from 'next-themes'
-import { useRouter } from 'next/router'
 import { useMediaQuery } from 'react-responsive'
 import { Text, Flex, Box, Input, Switch, Button } from 'components/primitives'
 import Layout from 'components/Layout'
@@ -26,7 +25,6 @@ import { useRouter } from 'next/router'
 import ChainToggle from "components/home/ChainToggle";
 
 const LaunchpadDeployPage = () => {
-  const router = useRouter()
   const { theme } = useTheme()
   const isMobile = useMediaQuery({ query: '(max-width: 960px)' })
   const { chain: activeChain } = useNetwork();
