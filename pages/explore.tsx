@@ -23,7 +23,7 @@ const ExplorePage: NextPage<Props> = ({ ssr }) => {
 
   let collectionQuery: Parameters<typeof useCollections>['0'] = {
     normalizeRoyalties: NORMALIZE_ROYALTIES,
-    sortBy: 'allTimeVolume',
+    sortBy: '7DayVolume',
   }
 
   const { data, hasNextPage, fetchNextPage, isFetchingPage, isValidating } =
