@@ -47,7 +47,7 @@ const ExplorePage: NextPage<Props> = ({ ssr }) => {
 
   let volumeKey: ComponentPropsWithoutRef<
     typeof TrendingCollectionsList
-  >['volumeKey'] = 'allTime'
+  >['volumeKey'] = '7day'
 
   return (
     <Layout>
