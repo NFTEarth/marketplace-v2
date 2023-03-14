@@ -97,9 +97,12 @@ export const LeaderboardTable: FC<Props> = ({ data }) => {
               key={profile.id}
               rank={data.map((e: any) => e.wallet.toLowerCase()).indexOf(address?.toLowerCase()) + 1}
               username="You"
-              listingExp={formatNumber(profile.listingExp, 2)}
-              offerExp={formatNumber(profile.offerExp, 2)}
-              totalExp={formatNumber(profile.exp, 2)}
+              // listingExp={formatNumber(profile.listingExp, 2)}
+              // offerExp={formatNumber(profile.offerExp, 2)}
+              // totalExp={formatNumber(profile.exp, 2)}
+              listingExp="0"
+              offerExp="0"
+              totalExp="0"
             />
           )}
           {filteredData
@@ -112,9 +115,12 @@ export const LeaderboardTable: FC<Props> = ({ data }) => {
                 key={`leaderboard-${i}`}
                 rank={i + 1}
                 username={item.wallet}
-                listingExp={formatNumber(item.listingExp, 2)}
-                offerExp={formatNumber(item.offerExp, 2)}
-                totalExp={formatNumber(item.exp, 2)}
+                // listingExp={formatNumber(item.listingExp, 2)}
+                // offerExp={formatNumber(item.offerExp, 2)}
+                // totalExp={formatNumber(item.exp, 2)}
+                listingExp="0"
+                offerExp="0"
+                totalExp="0"
               />
             ))}
           <Box ref={loadMoreRef} css={{ height: 20 }} />
