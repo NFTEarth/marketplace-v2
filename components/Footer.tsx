@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { Box, Text, Flex, Anchor, Button } from './primitives'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDiscord, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import {useTheme} from "next-themes";
 
 type SectionTitleProps = {
   title: string
@@ -72,6 +73,8 @@ const protocolSectionLinks = [
 ]
 
 export const Footer = () => {
+  const { theme }  = useTheme()
+
   return (
     <Flex
       justify="between"
@@ -157,24 +160,32 @@ export const Footer = () => {
             </Button>
           </a>
         </Flex>
-        <Box css={{ marginTop: 10 }}>
-          <a href="https://aws.amazon.com/what-is-cloud-computing">
+        <Flex direction="row" css={{ my: 30, gap: 25 }}>
+          <a
+            href="https://alchemy.com"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <img
+              id="badge-button"
+              style={{ height: 30 }}
+              src={theme === 'light' ? '/brand/alchemy-logo-black.png' : '/brand/alchemy-logo-white.png'}
+              alt="Powered by Alchemy"
+            />
+          </a>
+          <a
+            href="https://aws.amazon.com/what-is-cloud-computing"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <img
               height="100"
               width="100"
-              src="/images/powered-by-aws-white.png"
+              src={theme === 'light' ? '/brand/powered-by-aws-dark.png' : '/brand/powered-by-aws-white.png'}
               alt="Powered by AWS Cloud Computing"
             />
           </a>
-        </Box>
-        <a href="https://alchemy.com">
-          <img
-            id="badge-button"
-            style={{ width: 240, height: 53, marginTop: '30px' }}
-            src="https://static.alchemyapi.io/images/marketing/badge.png"
-            alt="Powered by Alchemy"
-          />
-        </a>
+        </Flex>
       </Flex>
     </Flex>
   )
