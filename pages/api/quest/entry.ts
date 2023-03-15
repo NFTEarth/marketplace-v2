@@ -157,10 +157,10 @@ const handleQuestEntry = async (req: NextApiRequest, res: NextApiResponse) => {
       {
         wallet: wallet
       },
-      accountData?.discord_id && {
+      accountData?.discord_id ?? {
         discord_id: accountData?.discord_id,
       },
-      accountData?.twitter_id && {
+      accountData?.twitter_id ?? {
         twitter_id: accountData?.twitter_id
       }
     ].filter(Boolean)

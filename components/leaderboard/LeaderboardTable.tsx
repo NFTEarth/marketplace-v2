@@ -15,13 +15,14 @@ import {formatNumber} from "../../utils/numbers";
 import {useProfile} from "../../hooks";
 
 type Props = {
-  data: any
+  data: any,
+  disabled?: boolean
 }
 
 const desktopTemplateColumns = '.75fr repeat(4, 1fr)'
 const mobileTemplateColumns = 'repeat(5, 1fr)'
 
-export const LeaderboardTable: FC<Props> = ({ data }) => {
+export const LeaderboardTable: FC<Props> = ({ data, disabled }) => {
   const loadMoreRef = useRef<HTMLDivElement>(null)
   const [searchWallet, setSearchWallet] = useState<string | null>('')
   const { address } = useAccount()
@@ -114,12 +115,9 @@ export const LeaderboardTable: FC<Props> = ({ data }) => {
                 key={`leaderboard-${i}`}
                 rank={i + 1}
                 username={item.wallet}
-                // listingExp={formatNumber(item.listingExp, 2)}
-                // offerExp={formatNumber(item.offerExp, 2)}
-                // totalExp={formatNumber(item.exp, 2)}
-                listingExp='0'
-                offerExp='0'
-                totalExp='0'
+                listingExp={disabled ? '0' : formatNumber(item.listingExp, 2)}
+                offerExp={disabled ? '0' : formatNumber(item.offerExp, 2)}
+                totalExp={disabled ? '0' : formatNumber(item.exp, 2)}
               />
             ))}
           <Box ref={loadMoreRef} css={{ height: 20 }} />
