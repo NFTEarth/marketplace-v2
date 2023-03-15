@@ -177,17 +177,16 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
           textAlign: 'center',
           pl: '$2 !important',
           py: '$5',
-          height: '-webkit-fill-available'
         }}
       >
-        {/* <Text
+        <Text
           style={{
             '@initial': 'subtitle3',
             '@lg': 'subtitle1',
           }}
         >
-          {rank}
-        </Text> */}
+         -
+        </Text>
       </TableCell>
 
       <TableCell
