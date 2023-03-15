@@ -97,12 +97,9 @@ export const LeaderboardTable: FC<Props> = ({ data, disabled }) => {
               key={profile.id}
               rank={data.map((e: any) => e.wallet.toLowerCase()).indexOf(address?.toLowerCase()) + 1}
               username="You"
-              // listingExp={formatNumber(profile.listingExp, 2)}
-              // offerExp={formatNumber(profile.offerExp, 2)}
-              // totalExp={formatNumber(profile.exp, 2)}
-              listingExp='0'
-              offerExp='0'
-              totalExp='0'
+              listingExp={disabled ? '0' : formatNumber(profile.listingExp, 2)}
+              offerExp={disabled ? '0' : formatNumber(profile.offerExp, 2)}
+              totalExp={disabled ? '0' : formatNumber(profile.exp, 2)}
             />
           )}
           {filteredData
