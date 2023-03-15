@@ -1,6 +1,5 @@
 import {NextApiRequest, NextApiResponse} from "next"
 import { Redis } from '@upstash/redis'
-import {ethers} from "ethers"
 import db from "lib/db"
 import {calculateReward} from "lib/reward";
 import {ConsiderationItem, ItemType, OfferItem, Orders} from "types/nftearth.d"
@@ -36,7 +35,7 @@ const handleOrderbookOffers = async (req: NextApiRequest, res: NextApiResponse) 
       parameters.offerer.toLowerCase(),
       nft[0]?.token,
       payment[0].token.toLowerCase(),
-      +ethers.utils.formatEther(payment[0]?.startAmount || '0').toString(),
+      payment[0]?.startAmount,
       parameters.endTime - parameters.startTime,
       false
     )

@@ -118,14 +118,14 @@ type CalculateReward = (
   account: string,
   collectionId: string,
   paymentToken: string,
-  amount: number,
+  amount: string,
   period: number,
   isListing: boolean
 ) => Promise<number>
 
 export const calculateReward: CalculateReward = async (chainId, account, collectionId, paymentToken, amount, period, isListing)  => {
   const isNFTE = paymentToken === chainToNFTE[chainId];
-  let value = +ethers.utils.formatEther(amount|| '0').toString()
+  let value = +ethers.utils.formatEther(amount || '0').toString()
 
   // Temp Fix
   if (isNFTE) {
