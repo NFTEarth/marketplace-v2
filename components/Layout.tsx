@@ -16,8 +16,8 @@ const Layout: FC<Props> = ({ children }) => {
         css={{
           background:
             theme == 'light'
-              ? '$neutralBg'
-              : 'radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, $neutralBg 99.4%);',
+              ? 'radial-gradient(circle at 24.1% 68.8%, rgb(220, 220, 220) 0%, $neutralBg 95.4%);'
+              : '$neutralBg',
           height: '100%',
           minHeight: '100vh',
           pt: 80,

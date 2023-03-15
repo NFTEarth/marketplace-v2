@@ -208,9 +208,8 @@ const ActivityTableRow: FC<ActivityTableRowProps> = ({ activity }) => {
               </Flex>
             </Flex>
             <Flex align="center" justify="between">
-              <Link
+              <Anchor
                 href={href}
-                passHref
                 style={{ maxWidth: '100%', minWidth: 0 }}
               >
                 <Flex align="center">
@@ -230,7 +229,7 @@ const ActivityTableRow: FC<ActivityTableRowProps> = ({ activity }) => {
                       activity.collection?.collectionName}
                   </Text>
                 </Flex>
-              </Link>
+              </Anchor>
               {activity.price &&
               activity.price !== 0 &&
               activity.type &&
@@ -261,19 +260,13 @@ const ActivityTableRow: FC<ActivityTableRowProps> = ({ activity }) => {
               </Text>
               {activity.fromAddress &&
               activity.fromAddress !== constants.AddressZero ? (
-                <Link href={`/profile/${activity.fromAddress}`}>
+                <Anchor href={`/profile/${activity.fromAddress}`}>
                   <Text
                     style="subtitle3"
-                    css={{
-                      color: '$primary11',
-                      '&:hover': {
-                        color: '$primary10',
-                      },
-                    }}
                   >
                     {fromDisplayName}
                   </Text>
-                </Link>
+                </Anchor>
               ) : (
                 <span>-</span>
               )}
@@ -285,19 +278,13 @@ const ActivityTableRow: FC<ActivityTableRowProps> = ({ activity }) => {
               </Text>
               {activity.toAddress &&
               activity.toAddress !== constants.AddressZero ? (
-                <Link href={`/profile/${activity.toAddress}`}>
+                <Anchor href={`/profile/${activity.toAddress}`}>
                   <Text
                     style="subtitle3"
-                    css={{
-                      color: '$primary11',
-                      '&:hover': {
-                        color: '$primary10',
-                      },
-                    }}
                   >
                     {toDisplayName}
                   </Text>
-                </Link>
+                </Anchor>
               ) : (
                 <span>-</span>
               )}
@@ -326,7 +313,7 @@ const ActivityTableRow: FC<ActivityTableRowProps> = ({ activity }) => {
       </TableCell>
 
       <TableCell css={{ minWidth: 0 }}>
-        <Link href={href} passHref>
+        <Anchor href={href}>
           <Flex align="center">
             {imageSrc && (
               <Image
@@ -344,7 +331,7 @@ const ActivityTableRow: FC<ActivityTableRowProps> = ({ activity }) => {
                 activity.collection?.collectionName}
             </Text>
           </Flex>
-        </Link>
+        </Anchor>
       </TableCell>
       <TableCell>
         {activity.price &&
@@ -382,19 +369,13 @@ const ActivityTableRow: FC<ActivityTableRowProps> = ({ activity }) => {
             <Text style="subtitle3" color="subtle">
               From
             </Text>
-            <Link href={`/profile/${activity.fromAddress}`}>
+            <Anchor href={`/profile/${activity.fromAddress}`}>
               <Text
                 style="subtitle3"
-                css={{
-                  color: '$primary14',
-                  '&:hover': {
-                    color: '$primary10',
-                  },
-                }}
               >
                 {fromDisplayName}
               </Text>
-            </Link>
+            </Anchor>
           </Flex>
         ) : (
           <span>-</span>
@@ -406,7 +387,7 @@ const ActivityTableRow: FC<ActivityTableRowProps> = ({ activity }) => {
             <Text style="subtitle3" color="subtle">
               To
             </Text>
-            <Link href={`/profile/${activity.toAddress}`}>
+            <Anchor href={`/profile/${activity.toAddress}`}>
               <Text
                 style="subtitle3"
                 css={{
@@ -418,7 +399,7 @@ const ActivityTableRow: FC<ActivityTableRowProps> = ({ activity }) => {
               >
                 {toDisplayName}
               </Text>
-            </Link>
+            </Anchor>
           </Flex>
         ) : (
           <span>-</span>

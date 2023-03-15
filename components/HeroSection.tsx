@@ -40,24 +40,24 @@ const HeroSection: FC<IProp> = ({ hideLink }) => {
         }}
       >
         <Flex>
-        <Text
-          style={{
-            '@initial': 'h2',
-            '@lg': 'h1',
-          }}
-          as="h1"
-          css={{ color: '$whiteA12', lineHeight: 1.2 }}
-        >
-          NFTEarth 
-        </Text>
-        <Box css={{ width: 60, cursor: 'pointer', marginLeft: 10, marginTop: 10 }}>
-              <Image
-                src="/nftearth-icon-new.png"
-                width={68}
-                height={68}
-                alt="NFTEarth Logo"
-              />
-            </Box>
+          <Text
+            style={{
+              '@initial': 'h2',
+              '@lg': 'h1',
+            }}
+            as="h1"
+            css={{ color: '$whiteA12', lineHeight: 1.2 }}
+          >
+            NFTEarth
+          </Text>
+          <Box css={{ width: 60, cursor: 'pointer', marginLeft: 10, marginTop: 10 }}>
+            <Image
+              src="/nftearth-icon-new.png"
+              width={68}
+              height={68}
+              alt="NFTEarth Logo"
+            />
+          </Box>
         </Flex>
 
         <Text
@@ -76,18 +76,15 @@ const HeroSection: FC<IProp> = ({ hideLink }) => {
             <Link href="/portfolio" passHref legacyBehavior>
               <Button
                 as="a"
-                color={theme === 'light' ? 'primary' : 'ghost'}
+                color={'ghost'}
                 corners="pill"
                 size="large"
                 css={{
                   width: 100,
                   borderRadius: '$lg',
+                  color: 'white',
                   justifyContent: 'center',
-                  border: '2px solid #6BE481',
-                  '&:hover': {
-                    background: '#6BE481',
-                    color: 'black',
-                  },
+                  border: '2px solid #6BE481'
                 }}
               >
                 Sell
@@ -96,18 +93,15 @@ const HeroSection: FC<IProp> = ({ hideLink }) => {
             <Link href="/explore" passHref legacyBehavior>
               <Button
                 as="a"
-                color={theme === 'light' ? 'primary' : 'ghost'}
+                color={'ghost'}
                 corners="pill"
                 size="large"
                 css={{
                   width: 100,
                   borderRadius: '$lg',
+                  color: 'white',
                   border: '2px solid #6BE481',
-                  justifyContent: 'center',
-                  '&:hover': {
-                    background: '#6BE481',
-                    color: 'black',
-                  },
+                  justifyContent: 'center'
                 }}
               >
                 Explore

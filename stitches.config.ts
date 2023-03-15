@@ -52,12 +52,12 @@ export const { createTheme, keyframes, styled, globalCss, getCssText } =
         primary6: '$lime6',
         primary7: '$lime7',
         primary8: '$lime8',
-        primary9: 'hsl(141,100%,64%)',
-        primary10: 'hsl(141, 100%, 52%)',
-        primary11: 'hsl(141,100%,74%)',
-        primary12: 'hsl(141,100%,88%)',
-        primary13: 'hsl(145, 25%, 39%)',
-        primary14: 'hsl(142,34%,51%)',
+        primary9: 'hsl(141,100%,84%)',
+        primary10: 'hsl(141, 100%, 75%)',
+        primary11: 'hsl(141,100%,60%)',
+        primary12: 'hsl(141,100%,50%)',
+        primary13: 'hsl(141, 72%, 47%)',
+        primary14: 'hsl(142,34%,40%)',
 
         //Secondary
         secondary1: '$limeA1',

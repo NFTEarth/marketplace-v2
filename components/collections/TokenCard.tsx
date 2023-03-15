@@ -275,8 +275,7 @@ export default ({
           mutate={mutate}
           buttonCss={{
             justifyContent: 'center',
-            flex: 1,
-            background: '$primary14 !important'
+            flex: 1
           }}
           buttonProps={{
             corners: 'square',
@@ -287,8 +286,7 @@ export default ({
           buttonCss={{
             width: 52,
             p: 0,
-            justifyContent: 'center',
-            background: '$primary14 !important'
+            justifyContent: 'center'
           }}
           buttonProps={{ corners: 'square' }}
         />
