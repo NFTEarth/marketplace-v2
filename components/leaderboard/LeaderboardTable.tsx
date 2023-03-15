@@ -173,7 +173,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
     >
       <TableCell
         css={{
-          //   borderBottom: '1px solid $primary13',
+          borderBottom: '1px solid $primary13',
           borderLeft: '1px solid $primary13',
           textAlign: 'center',
           pl: '$2 !important',
