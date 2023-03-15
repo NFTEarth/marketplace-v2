@@ -16,6 +16,7 @@ const LeaderboardPage: NextPage = () => {
   const {
     data,
     isValidating,
+    isFetchingInitialData,
     isFetchingPage,
     fetchNextPage
   } = useLeaderboard({
@@ -188,7 +189,7 @@ const LeaderboardPage: NextPage = () => {
               marginTop: '50px',
             }}
           >
-            <LeaderboardTable data={data.slice(0,1500)} />
+            <LeaderboardTable loading={isFetchingInitialData} data={data.slice(0,1500)} />
             <Box ref={loadMoreRef} css={{ height: 20 }}/>
           </Flex>
         </Flex>
