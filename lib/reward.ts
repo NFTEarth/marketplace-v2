@@ -4,7 +4,8 @@ import fetcher from "utils/fetcher";
 import supportedChains from "utils/chains";
 import db from "lib/db";
 
-const EXTRA_REWARD_PER_HOUR_PERIOD=0.00000001
+let lastUpdate = (new Date()).getTime();
+const EXTRA_REWARD_PER_PERIOD=0.00001
 const aMonth = 60 * 24 * 30
 const chainToNFTE: Record<number, string> = {
   10: '0xc96f4f893286137ac17e07ae7f217ffca5db3ab6',
@@ -62,7 +63,9 @@ const getRewardForRank = (rank: number) => {
 }
 
 const fetchCollectionRankReward = async (chainId: number, collectionId: string) => {
-  if (collectionReward[chainId]) {
+  const currentTime = (new Date()).getTime();
+  // Fetch Rank Daily
+  if (collectionReward[chainId] && (lastUpdate + (1000 * 60 * 24)) > currentTime) {
     return collectionReward[chainId]?.[collectionId]
   }
 
@@ -77,10 +80,10 @@ const fetchCollectionRankReward = async (chainId: number, collectionId: string) 
     const optResult: any = await fetchCollection(10, optContinuation)
     const arbResult: any = await fetchCollection(42161, arbContinuation)
 
-    optResult.forEach((collection: any, j: number) => {
+    optResult.data.forEach((collection: any, j: number) => {
       collection.topBid?.price?.amount?.native
       if (collectionReward[10]) {
-        collectionReward[10][collection.id] = {
+        collectionReward[10][collection.id.toLowerCase()] = {
           floorAsk: +collection.floorAsk?.price?.amount?.native,
           topBid: +collection.topBid?.price?.amount?.native,
           reward: getRewardForRank(i + j + 1)
@@ -88,18 +91,24 @@ const fetchCollectionRankReward = async (chainId: number, collectionId: string) 
       }
     })
 
-    arbResult.forEach((collection: any, j: number) => {
+    arbResult.data.forEach((collection: any, j: number) => {
       collection.topBid?.price?.amount?.native
       if (collectionReward[42161]) {
-        collectionReward[42161][collection.id] = {
+        collectionReward[42161][collection.id.toLowerCase()] = {
           floorAsk: collection.floorAsk?.price?.amount?.native,
           topBid: collection.topBid?.price?.amount?.native,
           reward: getRewardForRank(i + j + 1)
         }
       }
     })
+
+    optContinuation = optResult.continuation
+    arbContinuation = arbResult.continuation
+
     i += 20
   }
+
+  lastUpdate = currentTime
 
   return collectionReward[chainId]?.[collectionId]
 }
@@ -137,14 +146,14 @@ export const calculateReward: CalculateReward = async (chainId, account, collect
     const floorValue = +`${collection.floorAsk}`
     const tokenValue = floorValue || topBidValue || 0
     const percentDiff = (tokenValue - value) / ((tokenValue + value) / 2)
+
     period = period > aMonth ? aMonth : period
+    reward += reward * (period * EXTRA_REWARD_PER_PERIOD)
 
     if (isListing) {
-      reward += reward * (period * EXTRA_REWARD_PER_HOUR_PERIOD)
-      reward += reward * percentDiff
+      reward += (reward * percentDiff)
     } else {
-      reward += reward * (period * EXTRA_REWARD_PER_HOUR_PERIOD)
-      reward -= reward * percentDiff
+      reward -= (reward * percentDiff)
     }
 
     if (reward < 0 || value <= 0 || questEntry.length < 7) {
