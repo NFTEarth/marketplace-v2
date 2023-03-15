@@ -17,13 +17,14 @@ import LoadingSpinner from 'components/common/LoadingSpinner'
 
 type Props = {
   data: any
+  disabled?: boolean
   loading: boolean
 }
 
 const desktopTemplateColumns = '.75fr repeat(4, 1fr)'
 const mobileTemplateColumns = 'repeat(5, 1fr)'
 
-export const LeaderboardTable: FC<Props> = ({ loading, data }) => {
+export const LeaderboardTable: FC<Props> = ({ loading, data, disabled }) => {
   const loadMoreRef = useRef<HTMLDivElement>(null)
   const [searchWallet, setSearchWallet] = useState<string | null>('')
   const { address } = useAccount()
@@ -54,8 +55,12 @@ export const LeaderboardTable: FC<Props> = ({ loading, data }) => {
           '@xs': {
             marginRight: '0',
           },
+          '@lg': {
+            marginRight: '5vw',
+          },
         }}
       >
+        <Text>Search Wallet Address</Text>
         <Input
           onChange={(e) => {
             setSearchWallet(e.target.value)
@@ -106,12 +111,11 @@ export const LeaderboardTable: FC<Props> = ({ loading, data }) => {
                     .indexOf(address?.toLowerCase()) + 1
                 }
                 username="You"
-                // listingExp={formatNumber(profile.listingExp, 2)}
-                // offerExp={formatNumber(profile.offerExp, 2)}
-                // totalExp={formatNumber(profile.exp, 2)}
-                listingExp="0"
-                offerExp="0"
-                totalExp="0"
+                listingExp={
+                  disabled ? '0' : formatNumber(profile.listingExp, 2)
+                }
+                offerExp={disabled ? '0' : formatNumber(profile.offerExp, 2)}
+                totalExp={disabled ? '0' : formatNumber(profile.exp, 2)}
               />
             )}
             {filteredData
@@ -122,14 +126,11 @@ export const LeaderboardTable: FC<Props> = ({ loading, data }) => {
               .map((item: any, i: number) => (
                 <LeaderboardTableRow
                   key={`leaderboard-${i}`}
-                  rank={i + 1 }
+                  rank={i + 1}
                   username={item.wallet}
-                  // listingExp={formatNumber(item.listingExp, 2)}
-                  // offerExp={formatNumber(item.offerExp, 2)}
-                  // totalExp={formatNumber(item.exp, 2)}
-                  listingExp="0"
-                  offerExp="0"
-                  totalExp="0"
+                  listingExp={disabled ? '0' : formatNumber(item.listingExp, 2)}
+                  offerExp={disabled ? '0' : formatNumber(item.offerExp, 2)}
+                  totalExp={disabled ? '0' : formatNumber(item.exp, 2)}
                 />
               ))}
             <Box ref={loadMoreRef} css={{ height: 20 }} />
@@ -172,7 +173,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
     >
       <TableCell
         css={{
-          // borderBottom: '1px solid $primary13',
+          //   borderBottom: '1px solid $primary13',
           borderLeft: '1px solid $primary13',
           textAlign: 'center',
           pl: '$2 !important',
@@ -185,7 +186,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
             '@lg': 'subtitle1',
           }}
         >
-         -
+          -
         </Text>
       </TableCell>
 
