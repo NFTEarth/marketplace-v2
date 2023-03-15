@@ -235,6 +235,20 @@ const CollectionPage: NextPage<Props> = ({ id, ssr }) => {
             </Flex>
             <CollectionActions collection={collection} />
           </Flex>
+          <Flex css={{
+            flex: 1,
+            mb: '$4',
+            '@initial': {
+              width: '100%'
+            },
+            '@lg': {
+              width: '60%'
+            }
+          }}>
+            <Text style="body2">
+              {collection.description}
+            </Text>
+          </Flex>
           <StatHeader collection={collection} />
           <Tabs.Root defaultValue="items">
             <TabsList>
@@ -297,7 +311,6 @@ const CollectionPage: NextPage<Props> = ({ id, ssr }) => {
                           justifyContent: 'center',
                           '@sm': {
                             maxWidth: '220px',
-                            background: '$primary14 !important'
                           },
                         }}
                       />

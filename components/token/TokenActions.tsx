@@ -89,8 +89,7 @@ export const TokenActions: FC<Props> = ({
             buttonCss={{
               flex: 1,
               borderRight: '1px solid $primary6',
-              justifyContent: 'center',
-              background: '$primary14 !important'
+              justifyContent: 'center'
             }}
             buttonProps={{
               corners: 'square',
@@ -102,8 +101,7 @@ export const TokenActions: FC<Props> = ({
             buttonCss={{
               width: 52,
               p: 0,
-              justifyContent: 'center',
-              background: '$primary14 !important'
+              justifyContent: 'center'
             }}
             buttonProps={{
               corners: 'square',

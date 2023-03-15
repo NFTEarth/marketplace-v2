@@ -15,9 +15,9 @@ const Layout: FC<Props> = ({ children }) => {
       <Box
         css={{
           background:
-            theme == 'light'
+            theme == 'dark'
               ? '$neutralBg'
-              : 'radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, $neutralBg 99.4%);',
+              : 'radial-gradient(circle at 24.1% 68.8%, rgb(220, 220, 220) 0%, $neutralBg 95.4%);',
           height: '100%',
           minHeight: '100vh',
           pt: 80,
