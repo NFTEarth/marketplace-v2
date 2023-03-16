@@ -81,7 +81,7 @@ const fetchCollectionRankReward = async (chainId: number, collectionId: string) 
   while (i < 100) {
     const result: any = await fetchCollection(chainId, continuation)
 
-    result.data.forEach((collection: any, j: number) => {
+    result.collections.forEach((collection: any, j: number) => {
       // @ts-ignore
       collectionReward[chainId][collection.id.toLowerCase()] = {
         floorAsk: +collection.floorAsk?.price?.amount?.native,
