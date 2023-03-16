@@ -381,9 +381,9 @@ const TokenPage: NextPage<Props> = ({ id, collectionId, ssr }) => {
                   })
                   .catch((e) => {
                     addToast?.({
-                      title: 'Refresh token failed',
+                      title: 'Refresh Queued',
                       description:
-                        'We have queued this item for an update, check back in a few.',
+                        'Check back in a couple minutes.',
                     })
                     setIsRefreshing(false)
                     throw e
