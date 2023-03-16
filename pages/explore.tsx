@@ -86,7 +86,7 @@ const ExplorePage: NextPage<Props> = ({ ssr }) => {
             <TrendingCollectionsList
               uniqueKey="explore"
               chain={marketplaceChain}
-              collections={truncatedCollections.slice(0,100)}
+              collections={truncatedCollections}
               loading={isValidating && truncatedCollections.length <= 12}
               volumeKey={volumeKey}
             />
