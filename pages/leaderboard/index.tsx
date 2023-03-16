@@ -3,28 +3,27 @@ import { Text, Flex, Box } from 'components/primitives'
 import Layout from 'components/Layout'
 import { useTheme } from 'next-themes'
 import { LeaderboardTable } from 'components/leaderboard/LeaderboardTable'
-import useLeaderboard from "../../hooks/useLeaderboard";
-import {useEffect, useRef} from "react";
-import {useIntersectionObserver} from "usehooks-ts";
-import {useMounted} from "../../hooks";
+import useLeaderboard from '../../hooks/useLeaderboard'
+import { useEffect, useRef } from 'react'
+import { useIntersectionObserver } from 'usehooks-ts'
+import { useMounted } from '../../hooks'
 
 const LeaderboardPage: NextPage = () => {
   const { theme } = useTheme()
   const isMounted = useMounted()
   const loadMoreRef = useRef<HTMLDivElement | null>(null)
   const loadMoreObserver = useIntersectionObserver(loadMoreRef, {})
-  const {
-    data,
-    isValidating,
-    isFetchingPage,
-    fetchNextPage
-  } = useLeaderboard({
-    limit: 1000
-  }, {
-    revalidateFirstPage: true,
-    revalidateOnFocus: true,
-    refreshInterval: 10_000
-  })
+  const { data, isFetchingInitialData, isFetchingPage, fetchNextPage } =
+    useLeaderboard(
+      {
+        limit: 1000,
+      },
+      {
+        revalidateFirstPage: true,
+        revalidateOnFocus: true,
+        refreshInterval: 10_000,
+      }
+    )
 
   useEffect(() => {
     const isVisible = !!loadMoreObserver?.isIntersecting
@@ -188,8 +187,12 @@ const LeaderboardPage: NextPage = () => {
               marginTop: '50px',
             }}
           >
-            <LeaderboardTable data={data.slice(0,1500)} disabled/>
-            <Box ref={loadMoreRef} css={{ height: 20 }}/>
+            <LeaderboardTable
+              loading={isFetchingInitialData}
+              data={data.slice(0, 1500)}
+              disabled
+            />
+            <Box ref={loadMoreRef} css={{ height: 20 }} />
           </Flex>
         </Flex>
       </Box>

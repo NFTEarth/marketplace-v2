@@ -11,23 +11,26 @@ import {
 } from '../primitives'
 import { useAccount } from 'wagmi'
 import { useTheme } from 'next-themes'
-import {formatNumber} from "../../utils/numbers";
-import {useProfile} from "../../hooks";
+import { formatNumber } from '../../utils/numbers'
+import { useProfile } from '../../hooks'
+import LoadingSpinner from 'components/common/LoadingSpinner'
 
 type Props = {
-  data: any,
+  data: any
   disabled?: boolean
+  loading?: boolean
 }
 
 const desktopTemplateColumns = '.75fr repeat(4, 1fr)'
 const mobileTemplateColumns = 'repeat(5, 1fr)'
 
-export const LeaderboardTable: FC<Props> = ({ data, disabled }) => {
+export const LeaderboardTable: FC<Props> = ({ loading, data, disabled }) => {
   const loadMoreRef = useRef<HTMLDivElement>(null)
   const [searchWallet, setSearchWallet] = useState<string | null>('')
   const { address } = useAccount()
   const { data: profile } = useProfile(address)
   const tableRef = useRef<HTMLTableElement>(null)
+  const { theme } = useTheme()
 
   // find by wallet in the table
   const filteredData = data?.filter((item: any) =>
@@ -62,9 +65,14 @@ export const LeaderboardTable: FC<Props> = ({ data, disabled }) => {
           onChange={(e) => {
             setSearchWallet(e.target.value)
           }}
+          placeholder="Search Wallet Address"
           style={{
             borderRadius: '10px',
-            background: '#3C3C3C',
+            background: theme === 'light' ? 'lightgrey' : '#3C3C3C',
+            border: '1px solid hsl(141, 72%, 47%)',
+            width: '500px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
           }}
           css={{
             '@xs': {
@@ -84,41 +92,50 @@ export const LeaderboardTable: FC<Props> = ({ data, disabled }) => {
           overflowY: 'auto',
           flexGrow: 1,
           flexShrink: 1,
-          alignItems: 'stretch'
+          alignItems: 'stretch',
         }}
       >
-        <Flex
-          direction="column"
-          css={{ position: 'relative' }}
-        >
-          <TableHeading />
-          {profile && (
-            <LeaderboardTableRow
-              key={profile.id}
-              rank={data.map((e: any) => e.wallet.toLowerCase()).indexOf(address?.toLowerCase()) + 1}
-              username="You"
-              listingExp={disabled ? '0' : formatNumber(profile.listingExp, 2)}
-              offerExp={disabled ? '0' : formatNumber(profile.offerExp, 2)}
-              totalExp={disabled ? '0' : formatNumber(profile.exp, 2)}
-            />
-          )}
-          {filteredData
-            ?.filter(
-              (item: any) =>
-                item.wallet.toLowerCase() !== address?.toLowerCase()
-            )
-            .map((item: any, i: number) => (
+        {loading ? (
+          <Box css={{ marginTop: '30px' }}>
+            <LoadingSpinner />
+          </Box>
+        ) : (
+          <Flex direction="column" css={{ position: 'relative' }}>
+            <TableHeading />
+            {profile && (
               <LeaderboardTableRow
-                key={`leaderboard-${i}`}
-                rank={i + 1}
-                username={item.wallet}
-                listingExp={disabled ? '0' : formatNumber(item.listingExp, 2)}
-                offerExp={disabled ? '0' : formatNumber(item.offerExp, 2)}
-                totalExp={disabled ? '0' : formatNumber(item.exp, 2)}
+                key={profile.id}
+                rank={
+                  data
+                    .map((e: any) => e.wallet.toLowerCase())
+                    .indexOf(address?.toLowerCase()) + 1
+                }
+                username="You"
+                listingExp={
+                  disabled ? '0' : formatNumber(profile.listingExp, 2)
+                }
+                offerExp={disabled ? '0' : formatNumber(profile.offerExp, 2)}
+                totalExp={disabled ? '0' : formatNumber(profile.exp, 2)}
               />
-            ))}
-          <Box ref={loadMoreRef} css={{ height: 20 }} />
-        </Flex>
+            )}
+            {filteredData
+              ?.filter(
+                (item: any) =>
+                  item.wallet.toLowerCase() !== address?.toLowerCase()
+              )
+              .map((item: any, i: number) => (
+                <LeaderboardTableRow
+                  key={`leaderboard-${i}`}
+                  rank={i + 1}
+                  username={item.wallet}
+                  listingExp={disabled ? '0' : formatNumber(item.listingExp, 2)}
+                  offerExp={disabled ? '0' : formatNumber(item.offerExp, 2)}
+                  totalExp={disabled ? '0' : formatNumber(item.exp, 2)}
+                />
+              ))}
+            <Box ref={loadMoreRef} css={{ height: 20 }} />
+          </Flex>
+        )}
       </Flex>
     </>
   )
@@ -169,7 +186,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
             '@lg': 'subtitle1',
           }}
         >
-          {rank}
+          -
         </Text>
       </TableCell>
 
