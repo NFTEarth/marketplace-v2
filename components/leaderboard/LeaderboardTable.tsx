@@ -18,7 +18,7 @@ import LoadingSpinner from 'components/common/LoadingSpinner'
 type Props = {
   data: any
   disabled?: boolean
-  loading: boolean
+  loading?: boolean
 }
 
 const desktopTemplateColumns = '.75fr repeat(4, 1fr)'
