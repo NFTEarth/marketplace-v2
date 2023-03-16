@@ -4,6 +4,7 @@ import TrendingCollectionsList from 'components/home/TrendingCollectionsList'
 import Layout from 'components/Layout'
 import { ComponentPropsWithoutRef, useEffect, useRef } from 'react'
 import { useMarketplaceChain, useMounted } from 'hooks'
+import { Footer } from 'components/Footer'
 import LoadingSpinner from 'components/common/LoadingSpinner'
 import { paths } from '@nftearth/reservoir-sdk'
 import { useCollections } from '@nftearth/reservoir-kit-ui'
@@ -34,6 +35,8 @@ const ExplorePage: NextPage<Props> = ({ ssr }) => {
     }, marketplaceChain.id)
 
   let collections = data || []
+
+  const truncatedCollections = collections.slice(0,100)
 
   const loadMoreRef = useRef<HTMLDivElement>(null)
   const loadMoreObserver = useIntersectionObserver(loadMoreRef, {})
@@ -83,18 +86,19 @@ const ExplorePage: NextPage<Props> = ({ ssr }) => {
             <TrendingCollectionsList
               uniqueKey="explore"
               chain={marketplaceChain}
-              collections={collections}
-              loading={isValidating && collections.length <= 12}
+              collections={truncatedCollections.slice(0,100)}
+              loading={isValidating && truncatedCollections.length <= 12}
               volumeKey={volumeKey}
             />
           )}
-          {(isFetchingPage || isValidating) && collections.length > 12 && (
+          {(isFetchingPage || isValidating) && truncatedCollections.length > 12 && truncatedCollections.length !== 100 && (
             <Flex align="center" justify="center" css={{ py: '$space$4' }}>
               <LoadingSpinner />
             </Flex>
           )}
           <div ref={loadMoreRef} />
         </Flex>
+        <Footer />
       </Box>
     </Layout>
   )
