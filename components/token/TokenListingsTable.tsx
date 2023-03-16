@@ -163,7 +163,7 @@ const ListingTableRow: FC<ListingTableRowProps> = ({
           : '$primary6',
       }}
     >
-      <TableCell css={{ pl: '$2 !important', py: '$3' }}>
+      <TableCell css={{ pl: '$2', py: '$3' }}>
         <FormatCryptoCurrency
           amount={order?.price?.amount?.native}
           logoHeight={14}
@@ -172,16 +172,16 @@ const ListingTableRow: FC<ListingTableRowProps> = ({
         />
       </TableCell>
       {!isSmallDevice && (
-        <TableCell css={{ pl: '$2 !important', py: '$3' }}>
+        <TableCell css={{ pl: '$2', py: '$3' }}>
           <Text style="subtitle2">
             {order?.quantityRemaining}
           </Text>
         </TableCell>
       )}
-      <TableCell css={{ pl: '$2 !important', py: '$3' }}>
+      <TableCell css={{ pl: '$2', py: '$3' }}>
         <Text style="subtitle2">{expiration}</Text>
       </TableCell>
-      <TableCell css={{ pl: '$2 !important', py: '$3' }}>
+      <TableCell css={{ pl: '$2', py: '$3' }}>
         <Link href={`/profile/${order?.maker}`}>
           <Text
             style="subtitle3"
@@ -196,7 +196,7 @@ const ListingTableRow: FC<ListingTableRowProps> = ({
           </Text>
         </Link>
       </TableCell>
-      <TableCell css={{ pl: '$2 !important', py: '$3' }}>
+      <TableCell css={{ pl: '$2', py: '$3' }}>
         <Flex align="center" justify="end">
           {order?.maker !== address?.toLowerCase() && (
             <BuyNow
@@ -257,7 +257,7 @@ const TableHeading = () => {
       {headings.map((heading) => (
         <TableCell
           key={heading}
-          css={{ pl: '$2 !important', py: '$1', border: '1px solid $primary2' }}
+          css={{ pl: '$2', py: '$1', border: '1px solid $primary2' }}
         >
           <Text as={'div'} style="subtitle3">
             {heading}

@@ -84,7 +84,7 @@ const PointsTableRow: FC<PointsTableRowProps> = ({
               : '1px solid $primary13'
             : '1px solid $primary13',
           textAlign: 'center',
-          pl: '$2 !important',
+          pl: '$2',
           py: '$5',
         }}
       >
@@ -109,7 +109,7 @@ const PointsTableRow: FC<PointsTableRowProps> = ({
               : '1px solid $primary13'
             : '1px solid $primary13',
           textAlign: 'center',
-          pl: '$2 !important',
+          pl: '$2',
           py: '$5',
         }}
       >
@@ -135,7 +135,7 @@ const PointsTableRow: FC<PointsTableRowProps> = ({
               : '1px solid $primary13'
             : '1px solid $primary13',
           textAlign: 'center',
-          pl: '$2 !important',
+          pl: '$2',
           py: '$5',
         }}
       >
@@ -176,7 +176,7 @@ const TableHeading = () => {
           key={heading}
           css={{
             textAlign: 'center',
-            pl: '$2 !important',
+            pl: '$2',
             py: '$1',
             border: theme
               ? theme === 'dark'

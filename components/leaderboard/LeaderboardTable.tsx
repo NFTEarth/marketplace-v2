@@ -13,13 +13,14 @@ import { useAccount } from 'wagmi'
 import { useTheme } from 'next-themes'
 import {formatNumber} from "../../utils/numbers";
 import {useProfile} from "../../hooks";
+import {truncateAddress} from "../../utils/truncate";
 
 type Props = {
   data: any,
   disabled?: boolean
 }
 
-const desktopTemplateColumns = '.75fr repeat(4, 1fr)'
+const desktopTemplateColumns = '.75fr 3fr repeat(3, 1fr)'
 const mobileTemplateColumns = 'repeat(5, 1fr)'
 
 export const LeaderboardTable: FC<Props> = ({ data, disabled }) => {
@@ -33,6 +34,8 @@ export const LeaderboardTable: FC<Props> = ({ data, disabled }) => {
   const filteredData = data?.filter((item: any) =>
     new RegExp(`${searchWallet}`, 'ig').test(item.wallet)
   )
+
+  const wallets = data.map((e: any) => e.wallet.toLowerCase())
 
   useEffect(() => {
     if (tableRef.current) {
@@ -94,8 +97,8 @@ export const LeaderboardTable: FC<Props> = ({ data, disabled }) => {
           <TableHeading />
           {profile && (
             <LeaderboardTableRow
-              key={profile.id}
-              rank={data.map((e: any) => e.wallet.toLowerCase()).indexOf(address?.toLowerCase()) + 1}
+              key={`leaderboard-${address}`}
+              rank={wallets.indexOf(address?.toLowerCase()) < 0 ? '?' : wallets.indexOf(address?.toLowerCase()) + 1}
               username="You"
               listingExp={disabled ? '0' : formatNumber(profile.listingExp, 2)}
               offerExp={disabled ? '0' : formatNumber(profile.offerExp, 2)}
@@ -109,8 +112,8 @@ export const LeaderboardTable: FC<Props> = ({ data, disabled }) => {
             )
             .map((item: any, i: number) => (
               <LeaderboardTableRow
-                key={`leaderboard-${i}`}
-                rank={i + 1}
+                key={`leaderboard-${item.wallet}`}
+                rank={wallets.indexOf(item.wallet?.toLowerCase()) + 1}
                 username={item.wallet}
                 listingExp={disabled ? '0' : formatNumber(item.listingExp, 2)}
                 offerExp={disabled ? '0' : formatNumber(item.offerExp, 2)}
@@ -147,10 +150,10 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
       css={{
         borderBottomColor: theme === 'light' ? '$primary11' : '$primary6',
         '@xs': {
-          gridTemplateColumns: 'repeat(5, 1fr)',
+          gridTemplateColumns: mobileTemplateColumns,
         },
         '@lg': {
-          gridTemplateColumns: '.75fr repeat(4, 1fr)',
+          gridTemplateColumns: desktopTemplateColumns
         },
       }}
     >
@@ -159,7 +162,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
           borderBottom: '1px solid $primary13',
           borderLeft: '1px solid $primary13',
           textAlign: 'center',
-          pl: '$2 !important',
+          pl: '$2',
           py: '$5',
         }}
       >
@@ -177,11 +180,9 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
         css={{
           borderBottom: '1px solid $primary13',
           borderLeft: '1px solid $primary13',
-          maxWidth: '',
+          maxWidth: 'unset',
           textAlign: 'center',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          pl: '$2 !important',
+          pl: '$2',
           py: '$5',
         }}
       >
@@ -193,7 +194,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
             }}
             css={{ color: '$crimson9' }}
           >
-            {username}
+            You
           </Text>
         ) : (
           <Text
@@ -202,7 +203,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
               '@lg': 'subtitle1',
             }}
           >
-            {username}
+            {truncateAddress(username)}
           </Text>
         )}
       </TableCell>
@@ -212,7 +213,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
           borderBottom: '1px solid $primary13',
           borderLeft: '1px solid $primary13',
           textAlign: 'center',
-          pl: '$2 !important',
+          pl: '$2',
           py: '$5',
         }}
       >
@@ -237,7 +238,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
           borderBottom: '1px solid $primary13',
           borderLeft: '1px solid $primary13',
           textAlign: 'center',
-          pl: '$2 !important',
+          pl: '$2',
           py: '$5',
         }}
       >
@@ -263,8 +264,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
           borderLeft: '1px solid $primary13',
           borderRight: '1px solid $primary13',
           textAlign: 'center',
-          pl: '$2 !important',
-          pr: '$2 !important',
+          px: '$2',
           py: '$5',
         }}
       >
@@ -301,10 +301,10 @@ const TableHeading = () => {
         top: 0,
         backgroundColor: theme === 'light' ? '$primary10' : '$primary5',
         '@xs': {
-          gridTemplateColumns: 'repeat(5, 1fr)',
+          gridTemplateColumns: mobileTemplateColumns,
         },
         '@lg': {
-          gridTemplateColumns: '.75fr repeat(4, 1fr)',
+          gridTemplateColumns: desktopTemplateColumns,
         },
       }}
     >
@@ -313,7 +313,7 @@ const TableHeading = () => {
           key={index}
           css={{
             textAlign: 'center',
-            pl: '$2 !important',
+            pl: '$2',
             py: '$2',
             borderBottom: '1px solid $primary13',
             borderLeft: '1px solid $primary13',
