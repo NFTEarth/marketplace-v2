@@ -66,45 +66,31 @@ const fetchCollectionRankReward = async (chainId: number, collectionId: string) 
   const currentTime = (new Date()).getTime();
   // Fetch Rank Daily
   if (collectionReward[chainId] && (lastUpdate + (1000 * 60 * 24)) > currentTime) {
-    return collectionReward[chainId]?.[collectionId]
+    return collectionReward[chainId]?.[collectionId.toLowerCase()] || {
+      floorAsk: 0,
+      topBid: 0,
+      reward: 0
+    }
   }
 
   let i = 0
-  let optContinuation: string | undefined = undefined
-  let arbContinuation: string | undefined = undefined
+  let continuation: string | undefined = undefined
 
-  collectionReward[10] = {}
-  collectionReward[42161] = {}
+  collectionReward[chainId] = {}
 
   while (i < 100) {
-    const optResult: any = await fetchCollection(10, optContinuation)
-    const arbResult: any = await fetchCollection(42161, arbContinuation)
+    const result: any = await fetchCollection(chainId, continuation)
 
-    optResult.data.forEach((collection: any, j: number) => {
-      collection.topBid?.price?.amount?.native
-      if (collectionReward[10]) {
-        collectionReward[10][collection.id.toLowerCase()] = {
-          floorAsk: +collection.floorAsk?.price?.amount?.native,
-          topBid: +collection.topBid?.price?.amount?.native,
-          reward: getRewardForRank(i + j + 1)
-        }
+    result.collections.forEach((collection: any, j: number) => {
+      // @ts-ignore
+      collectionReward[chainId][collection.id.toLowerCase()] = {
+        floorAsk: +collection.floorAsk?.price?.amount?.native,
+        topBid: +collection.topBid?.price?.amount?.native,
+        reward: getRewardForRank(i + j + 1)
       }
     })
 
-    arbResult.data.forEach((collection: any, j: number) => {
-      collection.topBid?.price?.amount?.native
-      if (collectionReward[42161]) {
-        collectionReward[42161][collection.id.toLowerCase()] = {
-          floorAsk: collection.floorAsk?.price?.amount?.native,
-          topBid: collection.topBid?.price?.amount?.native,
-          reward: getRewardForRank(i + j + 1)
-        }
-      }
-    })
-
-    optContinuation = optResult.continuation
-    arbContinuation = arbResult.continuation
-
+    continuation = result.continuation
     i += 20
   }
 
@@ -159,6 +145,17 @@ export const calculateReward: CalculateReward = async (chainId, account, collect
     if (reward < 0 || value <= 0 || questEntry.length < 7) {
       reward = 0
     }
+
+    console.info(`New Reward`, {
+      chainId,
+      account,
+      tokenValue,
+      value,
+      percentDiff,
+      reward,
+      isNFTE,
+      isListing
+    })
   }
 
   return reward * (isNFTE ? 2 : 1)

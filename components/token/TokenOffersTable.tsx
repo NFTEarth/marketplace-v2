@@ -172,7 +172,7 @@ const OfferTableRow: FC<OfferTableRowProps> = ({
           : '$primary6',
       }}
     >
-      <TableCell css={{ pl: '$2 !important', py: '$3' }}>
+      <TableCell css={{ pl: '$2', py: '$3' }}>
         <FormatCryptoCurrency
           amount={offer?.price?.amount?.native}
           logoHeight={14}
@@ -181,7 +181,7 @@ const OfferTableRow: FC<OfferTableRowProps> = ({
         />
       </TableCell>
       {!isSmallDevice && (
-        <TableCell css={{ pl: '$2 !important', py: '$3' }}>
+        <TableCell css={{ pl: '$2', py: '$3' }}>
           <Text style="subtitle2">
             {`${(
               100 * Math.abs((offerPrice - floor) / ((offerPrice + floor) / 2))
@@ -189,10 +189,10 @@ const OfferTableRow: FC<OfferTableRowProps> = ({
           </Text>
         </TableCell>
       )}
-      <TableCell css={{ pl: '$2 !important', py: '$3' }}>
+      <TableCell css={{ pl: '$2', py: '$3' }}>
         <Text style="subtitle2">{expiration}</Text>
       </TableCell>
-      <TableCell css={{ pl: '$2 !important', py: '$3' }}>
+      <TableCell css={{ pl: '$2', py: '$3' }}>
         <Link href={`/profile/${offer?.maker}`}>
           <Text
             style="subtitle3"
@@ -207,7 +207,7 @@ const OfferTableRow: FC<OfferTableRowProps> = ({
           </Text>
         </Link>
       </TableCell>
-      <TableCell css={{ pl: '$2 !important', py: '$3' }}>
+      <TableCell css={{ pl: '$2', py: '$3' }}>
         <Flex align="center" justify="end">
           {isOwner && (
             <AcceptBid
@@ -269,7 +269,7 @@ const TableHeading = () => {
       {headings.map((heading) => (
         <TableCell
           key={heading}
-          css={{ pl: '$2 !important', py: '$1', border: '1px solid $primary2' }}
+          css={{ pl: '$2', py: '$1', border: '1px solid $primary2' }}
         >
           <Text as={'div'} style="subtitle3">
             {heading}

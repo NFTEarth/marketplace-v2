@@ -129,39 +129,6 @@ const LeaderboardPage: NextPage = () => {
               direction="column"
               css={{ textAlign: 'center', gap: '$4' }}
             >
-              {/* <Text
-                style={{
-                  '@initial': 'h3',
-                  '@lg': 'h2',
-                }}
-                css={{
-                  lineHeight: 1.2,
-                  letterSpacing: 2,
-                  marginTop: '75px',
-                  textAlign: 'center',
-                  marginLeft: 'auto',
-                  marginRight: 'auto',
-                  color: theme
-                    ? theme === 'dark'
-                      ? 'none'
-                      : '$black'
-                    : 'none',
-                  textShadow: theme
-                    ? theme === 'dark'
-                      ? `0 0 7px green,
-                  0 0 10px green,
-                  0 0 21px green,
-                  0 0 42px green,
-                  0 0 82px green,
-                  0 0 92px green,
-                  0 0 102px green,
-                  0 0 151px green`
-                      : 'none'
-                    : 'none',
-                }}
-              >
-                Rolling Leaderboard
-              </Text> */}
             </Flex>
             <Box css={{ textAlign: 'center' }}>
               <Text

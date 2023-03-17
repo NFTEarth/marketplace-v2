@@ -512,7 +512,7 @@ const LaunchpadDeployPage = () => {
               disabled={step !== 0}
               css={{
                 marginTop: 8,
-                background: '$primary14 !important',
+                background: '$primary14',
                 justifyContent: 'center',
                 alignItems: 'center',
                 justifyItems: 'center',

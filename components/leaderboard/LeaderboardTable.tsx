@@ -11,29 +11,33 @@ import {
 } from '../primitives'
 import { useAccount } from 'wagmi'
 import { useTheme } from 'next-themes'
-import {formatNumber} from "../../utils/numbers";
-import { useProfile } from "../../hooks";
+import { formatNumber } from "utils/numbers";
+import { useProfile } from "hooks";
+import LoadingSpinner from 'components/common/LoadingSpinner'
 
 type Props = {
-  data: any,
+  data: any
   disabled?: boolean
+  loading?: boolean
 }
 
-const desktopTemplateColumns = '.75fr repeat(4, 1fr)'
+const desktopTemplateColumns = '.75fr 1.5fr repeat(3, 1fr)'
 const mobileTemplateColumns = 'repeat(5, 1fr)'
 
-export const LeaderboardTable: FC<Props> = ({ data, disabled }) => {
+export const LeaderboardTable: FC<Props> = ({ loading, data, disabled }) => {
   const loadMoreRef = useRef<HTMLDivElement>(null)
   const [searchWallet, setSearchWallet] = useState<string | null>('')
   const { address } = useAccount()
   const { data: profile } = useProfile(address)
   const tableRef = useRef<HTMLTableElement>(null)
+  const { theme } = useTheme()
 
   // find by wallet in the table
   const filteredData = data?.filter((item: any) =>
     new RegExp(`${searchWallet}`, 'ig').test(item.wallet)
   )
 
+  const wallets = data.map((e: any) => e.wallet.toLowerCase())
 
   useEffect(() => {
     if (tableRef.current) {
@@ -44,36 +48,27 @@ export const LeaderboardTable: FC<Props> = ({ data, disabled }) => {
   return (
     <>
       <Flex
-        justify="end"
+        align="center"
+        justify="center"
         css={{
-          alignItems: 'center',
+          flex: 1,
           gap: '20px',
-          marginBottom: '20px',
-          backgroud: 'white',
-          '@xs': {
-            marginRight: '0',
-          },
-          '@lg': {
-            marginRight: '5vw',
-          },
+          marginBottom: '20px'
         }}
       >
-        <Text>Search Wallet Address</Text>
         <Input
           onChange={(e) => {
             setSearchWallet(e.target.value)
           }}
+          placeholder="Search Wallet Address"
           style={{
             borderRadius: '10px',
-            background: '#3C3C3C',
-          }}
-          css={{
-            '@xs': {
-              width: '100px',
-            },
-            '@md': {
-              width: '250px',
-            },
+            background: theme === 'light' ? 'lightgrey' : '#3C3C3C',
+            border: '1px solid hsl(141, 72%, 47%)',
+            width: '500px',
+            maxWidth: '70vw',
+            marginLeft: 'auto',
+            marginRight: 'auto',
           }}
         />
       </Flex>
@@ -85,41 +80,46 @@ export const LeaderboardTable: FC<Props> = ({ data, disabled }) => {
           overflowY: 'auto',
           flexGrow: 1,
           flexShrink: 1,
-          alignItems: 'stretch'
+          alignItems: 'stretch',
         }}
       >
-        <Flex
-          direction="column"
-          css={{ position: 'relative' }}
-        >
-          <TableHeading />
-          {profile && (
-            <LeaderboardTableRow
-              key={profile.id}
-              rank={data.map((e: any) => e.wallet.toLowerCase()).indexOf(address?.toLowerCase()) + 1}
-              username="You"
-              listingExp={disabled ? '0' : formatNumber(profile.listingExp, 2)}
-              offerExp={disabled ? '0' : formatNumber(profile.offerExp, 2)}
-              totalExp={disabled ? '0' : formatNumber(profile.exp, 2)}
-            />
-          )}
-          {filteredData
-            ?.filter(
-              (item: any) =>
-                item.wallet.toLowerCase() !== address?.toLowerCase()
-            )
-            .map((item: any, i: number) => (
+        {loading ? (
+          <Box css={{ marginTop: '30px' }}>
+            <LoadingSpinner />
+          </Box>
+        ) : (
+          <Flex direction="column" css={{ position: 'relative' }}>
+            <TableHeading />
+            {profile && (
               <LeaderboardTableRow
-                key={`leaderboard-${i}`}
-                rank={i + 1}
-                username={item.wallet}
-                listingExp={disabled ? '0' : formatNumber(item.listingExp, 2)}
-                offerExp={disabled ? '0' : formatNumber(item.offerExp, 2)}
-                totalExp={disabled ? '0' : formatNumber(item.exp, 2)}
+                key={`leaderboard-${address}`}
+                rank={wallets.indexOf(address?.toLowerCase()) < 0 ? '?' : wallets.indexOf(address?.toLowerCase()) + 1}
+                username="You"
+                listingExp={
+                  disabled ? '0' : formatNumber(profile.listingExp, 2)
+                }
+                offerExp={disabled ? '0' : formatNumber(profile.offerExp, 2)}
+                totalExp={disabled ? '0' : formatNumber(profile.exp, 2)}
               />
-            ))}
-          <Box ref={loadMoreRef} css={{ height: 20 }} />
-        </Flex>
+            )}
+            {filteredData
+              ?.filter(
+                (item: any) =>
+                  item.wallet.toLowerCase() !== address?.toLowerCase()
+              )
+              .map((item: any, i: number) => (
+                <LeaderboardTableRow
+                  key={`leaderboard-${item.wallet}`}
+                  rank={wallets.indexOf(item.wallet?.toLowerCase()) + 1}
+                  username={item.wallet}
+                  listingExp={disabled ? '0' : formatNumber(item.listingExp, 2)}
+                  offerExp={disabled ? '0' : formatNumber(item.offerExp, 2)}
+                  totalExp={disabled ? '0' : formatNumber(item.exp, 2)}
+                />
+              ))}
+            <Box ref={loadMoreRef} css={{ height: 20 }} />
+          </Flex>
+        )}
       </Flex>
     </>
   )
@@ -148,10 +148,10 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
       css={{
         borderBottomColor: theme === 'light' ? '$primary11' : '$primary6',
         '@xs': {
-          gridTemplateColumns: 'repeat(5, 1fr)',
+          gridTemplateColumns: mobileTemplateColumns,
         },
         '@lg': {
-          gridTemplateColumns: '.75fr repeat(4, 1fr)',
+          gridTemplateColumns: desktopTemplateColumns
         },
       }}
     >
@@ -160,7 +160,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
           borderBottom: '1px solid $primary13',
           borderLeft: '1px solid $primary13',
           textAlign: 'center',
-          pl: '$2 !important',
+          pl: '$2',
           py: '$5',
         }}
       >
@@ -178,11 +178,11 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
         css={{
           borderBottom: '1px solid $primary13',
           borderLeft: '1px solid $primary13',
-          maxWidth: '',
+          maxWidth: 'unset',
           textAlign: 'center',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
-          pl: '$2 !important',
+          pl: '$2',
           py: '$5',
         }}
       >
@@ -194,7 +194,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
             }}
             css={{ color: '$crimson9' }}
           >
-            {username}
+            You
           </Text>
         ) : (
           <Text
@@ -213,7 +213,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
           borderBottom: '1px solid $primary13',
           borderLeft: '1px solid $primary13',
           textAlign: 'center',
-          pl: '$2 !important',
+          pl: '$2',
           py: '$5',
         }}
       >
@@ -238,7 +238,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
           borderBottom: '1px solid $primary13',
           borderLeft: '1px solid $primary13',
           textAlign: 'center',
-          pl: '$2 !important',
+          pl: '$2',
           py: '$5',
         }}
       >
@@ -264,8 +264,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
           borderLeft: '1px solid $primary13',
           borderRight: '1px solid $primary13',
           textAlign: 'center',
-          pl: '$2 !important',
-          pr: '$2 !important',
+          px: '$2',
           py: '$5',
         }}
       >
@@ -302,10 +301,10 @@ const TableHeading = () => {
         top: 0,
         backgroundColor: theme === 'light' ? '$primary10' : '$primary5',
         '@xs': {
-          gridTemplateColumns: 'repeat(5, 1fr)',
+          gridTemplateColumns: mobileTemplateColumns,
         },
         '@lg': {
-          gridTemplateColumns: '.75fr repeat(4, 1fr)',
+          gridTemplateColumns: desktopTemplateColumns,
         },
       }}
     >
@@ -314,7 +313,7 @@ const TableHeading = () => {
           key={index}
           css={{
             textAlign: 'center',
-            pl: '$2 !important',
+            pl: '$2',
             py: '$2',
             borderBottom: '1px solid $primary13',
             borderLeft: '1px solid $primary13',
