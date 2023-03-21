@@ -100,6 +100,7 @@ const LeaderboardPage: NextPage = () => {
             css={{
               lineHeight: 1.2,
               letterSpacing: 2,
+              fontFamily: 'monospace',
               marginTop: '40px',
               textAlign: 'center',
               marginLeft: 'auto',
@@ -165,6 +166,7 @@ const LeaderboardPage: NextPage = () => {
             <Box css={{ textAlign: 'center' }}>
               <Text
                 css={{
+                  fontFamily: 'monospace',
                   color: theme
                     ? theme === 'dark'
                       ? '#39FF14'
