@@ -69,7 +69,7 @@ const HeroSection: FC<IProp> = ({ hideLink }) => {
             '@lg': { width: '50%' },
           }}
         >
-          {`Explore, Trade and Create NFTs on the Marketplace Built for L2`}
+          {`Trade NFTs on the Only Marketplace Built for L2`}
         </Text>
         {hideLink ?? (
           <Flex css={{ gap: 10 }}>
