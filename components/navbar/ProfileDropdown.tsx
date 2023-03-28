@@ -19,6 +19,7 @@ export const ProfileDropdown: FC = () => {
   const { address } = useAccount()
   const { data: opBalance } = useBalance({ chainId: 10, address })
   const { data: arbBalance } = useBalance({ chainId: 42161, address })
+  const { data: zkBalance } = useBalance({ chainId: 324, address })
   const { disconnect } = useDisconnect()
   const { data } = useProfile(address);
   const {
@@ -92,6 +93,16 @@ export const ProfileDropdown: FC = () => {
                 }}
               />
               <Text>{`${formatBN(arbBalance?.value, 4, arbBalance?.decimals)}Ξ`}</Text>
+            </Flex>
+            <Flex align="center" css={{ gap: '$2' }}>
+              <img
+                src={`/icons/zksync.png`}
+                style={{
+                  height: 17,
+                  width: 17
+                }}
+              />
+              <Text>{`${formatBN(zkBalance?.value, 4, zkBalance?.decimals)}Ξ`}</Text>
             </Flex>
           </Flex>
         </Flex>

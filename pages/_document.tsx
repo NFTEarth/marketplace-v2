@@ -68,6 +68,10 @@ class MyDocument extends Document {
             property="nftearth:token-url-arbitrum"
             content="/collection/arbitrum/${contract}/${tokenId}"
           />
+          <meta
+            property="nftearth:token-url-zksync"
+            content="/collection/zksync/${contract}/${tokenId}"
+          />
           <style
             id="stitches"
             dangerouslySetInnerHTML={{ __html: getCssText() }}

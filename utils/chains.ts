@@ -1,5 +1,5 @@
 // import { constants } from 'ethers'
-import { optimism, arbitrum } from 'wagmi/chains'
+import { optimism, arbitrum, zkSync } from 'wagmi/chains'
 import {Chain} from "@wagmi/chains";
 
 //CONFIGURABLE: The default export controls the supported chains for the marketplace. Removing
@@ -44,5 +44,13 @@ export default [
     proxyApi: '/api/nftearth/arbitrum',
     routePrefix: 'arbitrum',
     apiKey: process.env.ARBITRUM_RESERVOIR_API_KEY,
+  },
+  {
+    ...zkSync,
+    iconUrl: `/icons/zksync.png`,
+    reservoirBaseUrl: process.env.ZKSYNC_RESERVOIR_API_BASE,
+    proxyApi: '/api/nftearth/zksync',
+    routePrefix: 'zksync',
+    apiKey: process.env.ZKSYNC_RESERVOIR_API_KEY,
   }
 ] as MarketChain[]
