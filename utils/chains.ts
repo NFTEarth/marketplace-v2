@@ -1,17 +1,17 @@
 // import { constants } from 'ethers'
 import { optimism, arbitrum } from 'wagmi/chains'
-import {Chain} from "@wagmi/chains";
+import {Chain} from "@wagmi/chains"
 
 //CONFIGURABLE: The default export controls the supported chains for the marketplace. Removing
 // or adding chains will result in adding more or less chains to the marketplace.
 // They are an extension of the wagmi chain objects
 
 export interface MarketChain extends Chain {
-  iconUrl: string;
+  iconUrl: string,
   reservoirBaseUrl?: string,
-  proxyApi: string;
-  routePrefix: string;
-  apiKey?: string;
+  proxyApi: string,
+  routePrefix: string,
+  apiKey?: string,
 }
 
 export const DefaultChain: MarketChain = {
@@ -44,5 +44,34 @@ export default [
     proxyApi: '/api/nftearth/arbitrum',
     routePrefix: 'arbitrum',
     apiKey: process.env.ARBITRUM_RESERVOIR_API_KEY,
+  },
+  {
+    id: 1101,
+    name: "zkEVM",
+    network: "zkevm",
+    nativeCurrency: {
+      decimals: 18,
+      name: "Ether",
+      symbol: "ETH",
+    },
+    rpcUrls: {
+      default: {
+        http: ["https://zkevm-rpc.com"]
+      },
+      public: {
+        http: ["https://zkevm-rpc.com"],
+      },
+    },
+    blockExplorers: {
+      default: {
+        name: "PolygonScan",
+        url: "https://zkevm.polygonscan.com",
+      },
+    },
+    iconUrl: `/icons/zkevm.png`,
+    reservoirBaseUrl: process.env.ZKEVM_RESERVOIR_API_BASE,
+    proxyApi: '/api/nftearth/zkevm',
+    routePrefix: 'zkevm',
+    apiKey: process.env.ZKEVM_RESERVOIR_API_KEY,
   }
 ] as MarketChain[]
