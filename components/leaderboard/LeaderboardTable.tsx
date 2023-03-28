@@ -63,6 +63,7 @@ export const LeaderboardTable: FC<Props> = ({ loading, data, disabled }) => {
           placeholder="Search Wallet Address"
           style={{
             borderRadius: '10px',
+            fontFamily: 'monospace',
             background: theme === 'light' ? 'lightgrey' : '#3C3C3C',
             border: '1px solid hsl(141, 72%, 47%)',
             width: '500px',
@@ -169,6 +170,9 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
             '@initial': 'subtitle3',
             '@lg': 'subtitle1',
           }}
+          css={{
+            fontFamily: 'monospace',
+          }}
         >
           {rank}
         </Text>
@@ -192,7 +196,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
               '@initial': 'subtitle3',
               '@lg': 'subtitle1',
             }}
-            css={{ color: '$crimson9' }}
+            css={{ color: '$crimson9',    fontFamily: 'monospace', }}
           >
             You
           </Text>
@@ -201,6 +205,9 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
             style={{
               '@initial': 'subtitle3',
               '@lg': 'subtitle1',
+            }}
+            css={{
+              fontFamily: 'monospace',
             }}
           >
             {username}
@@ -228,6 +235,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
             '&:hover': {
               color: '$primary14',
             },
+            fontFamily: 'monospace',
           }}
         >
           {offerExp ?? 0}
@@ -253,6 +261,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
             '&:hover': {
               color: '$primary14',
             },
+            fontFamily: 'monospace',
           }}
         >
           {listingExp ?? 0}
@@ -279,6 +288,7 @@ const LeaderboardTableRow: FC<LeaderboardTableRowProps> = ({
             '&:hover': {
               color: '$primary14',
             },
+            fontFamily: 'monospace',
           }}
         >
           {totalExp}
@@ -327,6 +337,7 @@ const TableHeading = () => {
               color: '$gray11',
               display: 'flex',
               justifyContent: 'center',
+              fontFamily: 'monospace',
             }}
             as={'div'}
             style={{
