@@ -69,8 +69,8 @@ class MyDocument extends Document {
             content="/collection/arbitrum/${contract}/${tokenId}"
           />
           <meta
-            property="nftearth:token-url-zksync"
-            content="/collection/zksync/${contract}/${tokenId}"
+            property="nftearth:token-url-zkevm"
+            content="/collection/zkevm/${contract}/${tokenId}"
           />
           <style
             id="stitches"
