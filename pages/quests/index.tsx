@@ -57,6 +57,10 @@ const QuestsPage: NextPage = () => {
     }
   }
 
+  useEffect(() => {
+    router.replace('/')
+  }, [])
+  
   return (
     <Layout>
       {/* <Box
