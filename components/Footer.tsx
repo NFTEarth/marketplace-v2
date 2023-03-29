@@ -174,7 +174,7 @@ export const Footer = () => {
             />
           </a>
           <a
-            href="https://aws.amazon.com/what-is-cloud-computing"
+            href="https://cloud.google.com/learn/what-is-cloud-computing#:~:text=Cloud%20computing%20is%20the%20on,pay%20for%20what%20they%20use."
             target="_blank"
             rel="noreferrer noopener"
           >
