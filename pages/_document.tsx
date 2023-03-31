@@ -15,7 +15,7 @@ class MyDocument extends Document {
 
   render() {
     const description =
-      'Buy and Sell NFTs on L2 at NFTEarth'
+      'Trade NFTs on L2'
     const ogImage = 'https://nftearth.exchange/render-image-1.png'
     return (
       <Html lang="en">
@@ -36,7 +36,7 @@ class MyDocument extends Document {
           <meta name="twitter:card" content="summary_large_image" />
           <meta
             name="twitter:title"
-            content="NFTEarth: Buy and Sell NFTs on L2"
+            content="NFTEarth: Trade NFTs on L2"
           />
           <meta name="twitter:description" content={description} />
           <meta name="twitter:site" content="@NFTEarth_L2" />
