@@ -20,8 +20,7 @@ import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import {useMounted, useMarketplaceChain} from "hooks";
 import LoadingSpinner from "components/common/LoadingSpinner";
-import { truncateAddress } from "utils/truncate";
-import { useRouter } from 'next/router'
+import {truncateAddress} from "utils/truncate";
 import ChainToggle from "components/home/ChainToggle";
 
 const LaunchpadDeployPage = () => {
@@ -51,7 +50,7 @@ const LaunchpadDeployPage = () => {
   })
   const { setOpen: setConnectModalOpen, open: isConnectModalOpened } = useModal();
   const { isConnected } = useAccount()
-  const router = useRouter()
+
   const publicSupply = useMemo(() => {
     return +supply - +allowlistSupply - +reservedSupply;
   }, [supply, allowlistSupply, reservedSupply])
@@ -82,6 +81,8 @@ const LaunchpadDeployPage = () => {
     publicMintPrice
   ])
 
+  console.log(constructorArgs)
+
   const handleDeployContract = async (e: any) => {
     console.log('Deploying contract');
     e.preventDefault();
@@ -106,14 +107,23 @@ const LaunchpadDeployPage = () => {
 
       setStep(3);
       const browserProvider = await detectEthereumProvider() as ExternalProvider;
-      const provider = new ethers.providers.Web3Provider(browserProvider);
+      console.log('browserProvider', browserProvider);
+      const provider = new ethers.providers.Web3Provider(browserProvider, {
+        chainId: activeChain.id,
+        name: activeChain.name
+      });
+      console.log('provider', provider);
       const signer = provider.getSigner()
+      console.log('signer', signer);
       const transactionCount = await signer.getTransactionCount()
+      console.log('transactionCount', transactionCount);
       const deployer = await signer.getAddress();
+      console.log('deployer', deployer);
       const futureAddress = getContractAddress({
         from: deployer,
         nonce: transactionCount
       })
+      console.log('futureAddress', futureAddress);
       // // Using the signing account to deploy the contract
       const factory = new ethers.ContractFactory(artifact.abi, artifact.data.bytecode.object, signer);
 
@@ -123,9 +133,6 @@ const LaunchpadDeployPage = () => {
       setStep(4);
 
       setTxHash(contract.deployTransaction.hash)
-
-      // Waiting for the transaction to be mined
-      await contract.deployTransaction.wait(6);
 
       await fetch(`${proxyApi}/launchpad/create/v1`,{
         method: 'POST',
@@ -139,7 +146,7 @@ const LaunchpadDeployPage = () => {
           bytecode: artifact.data.bytecode.object,
           deployer: deployer
         })
-      })
+      }).catch(console.error)
 
       await fetch(`/api/launchpad/verify`,{
         method: 'POST',
@@ -154,19 +161,19 @@ const LaunchpadDeployPage = () => {
         })
       }).catch(console.error)
 
+      // Waiting for the transaction to be mined
+      await contract.deployTransaction.wait(6);
+
       // Contract Deployed
       // Your contract deployed at [0xsadsadasdasdsad] = `${activeChain?.blockExplorers?.default?.url}/address/${futureAddress}`
       setDeployedAddress(futureAddress);
       setStep(5);
     } catch (e: any) {
+      console.log(e.stack);
       setError(e.reason || e.message);
       setStep(0);
     }
   }
-
-  useEffect(() => {
-    router.replace('/')
-  }, [])
 
   useEffect(() => {
     if (isMounted && step > 1) {
@@ -178,7 +185,7 @@ const LaunchpadDeployPage = () => {
 
   return (
     <Layout>
-      {/* <form onSubmit={handleDeployContract} autoComplete="off">
+      <form onSubmit={handleDeployContract} autoComplete="off">
         <Box
           css={{
             p: 14,
@@ -666,7 +673,7 @@ const LaunchpadDeployPage = () => {
             </AnimatedContent>
           </Dialog.Portal>
         </Dialog.Root>
-      )} */}
+      )}
     </Layout>
   )
 }

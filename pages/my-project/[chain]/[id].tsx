@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import { useTheme } from 'next-themes'
-import {useAccount, useContractReads, useSignMessage} from "wagmi"
+import {useAccount, useContractReads, useNetwork, useSignMessage, useSwitchNetwork} from "wagmi"
 import {useRouter} from "next/router"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGear, faMapPin, faEdit, faList, faFileImage } from '@fortawesome/free-solid-svg-icons'
@@ -22,19 +22,8 @@ const MyProjectDetailPage = () => {
   const { theme } = useTheme();
   const [activeTab, setActiveTab] = useState<string | null>('details')
   const router = useRouter()
-  const { address } = useAccount()
+  const { address, isConnecting } = useAccount()
   const marketplaceChain = useMarketplaceChain()
-  const { signMessageAsync } = useSignMessage({
-    message: "Confirm account ownership"
-  });
-
-  useEffect(() => {
-    if (address) {
-      signMessageAsync().catch(() => {
-        location.href = '/my-project'
-      })
-    }
-  }, [address])
 
   const launchpadsQuery: Parameters<typeof useLaunchpads>['1'] = {
     id: router.query.id as string,
@@ -66,10 +55,10 @@ const MyProjectDetailPage = () => {
   }
 
   useEffect(() => {
-    if (launchpad && launchpad.deployer?.toLowerCase() !== address?.toLowerCase()) {
+    if (!isConnecting && !isValidating && launchpad?.deployer?.toLowerCase() !== address?.toLowerCase() || !isValidating && !launchpad) {
       location.href = '/my-project'
     }
-  }, [launchpad])
+  }, [launchpad, address, isConnecting])
 
   const { data: contractData, isError, isLoading } = useContractReads({
     contracts: [

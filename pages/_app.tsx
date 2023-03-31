@@ -60,7 +60,6 @@ const { chains, provider } = configureChains(supportedChains, [
 const { connectors } = getDefaultClient({
   appName: 'NFTEarth Exchange',
   appIcon: 'https://nftearth.exchange/nftearth-icon-new.png',
-  alchemyId: process.env.NEXT_PUBLIC_ALCHEMY_OPTIMISM_ID,
   walletConnectOptions: {
     projectId: '5dd18f61f54044c53f0e1ea9d1829b08',
     version: "2"
