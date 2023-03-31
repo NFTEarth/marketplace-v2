@@ -17,16 +17,21 @@ import LoadingSpinner from "components/common/LoadingSpinner";
 import {useLaunchpads, useMarketplaceChain} from "hooks";
 import launchpadArtifact from 'artifact/NFTELaunchpad.json'
 import {BigNumber} from "@ethersproject/bignumber";
+import {GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage} from "next";
+import {paths} from "@nftearth/reservoir-sdk";
+import supportedChains, {DefaultChain} from "../../../utils/chains";
+import fetcher from "../../../utils/fetcher";
 
-const MyProjectDetailPage = () => {
+type Props = InferGetStaticPropsType<typeof getStaticProps>
+
+const MyProjectDetailPage : NextPage<Props> = ({ id, ssr }) => {
   const { theme } = useTheme();
   const [activeTab, setActiveTab] = useState<string | null>('details')
-  const router = useRouter()
   const { address, isConnecting } = useAccount()
   const marketplaceChain = useMarketplaceChain()
 
   const launchpadsQuery: Parameters<typeof useLaunchpads>['1'] = {
-    id: router.query.id as string,
+    contract: id as string,
     includeAllowList: true,
     limit: 1,
   }
@@ -41,7 +46,7 @@ const MyProjectDetailPage = () => {
     launchpadsQuery,
     {
       revalidateOnMount: false,
-      fallbackData: [],
+      fallbackData: [ssr.launchpad],
       revalidateFirstPage: false,
       revalidateIfStale: false,
     }
@@ -55,8 +60,8 @@ const MyProjectDetailPage = () => {
   }
 
   useEffect(() => {
-    if (!isConnecting && !isValidating && launchpad?.deployer?.toLowerCase() !== address?.toLowerCase() || !isValidating && !launchpad) {
-      location.href = '/my-project'
+    if (!isConnecting && !isValidating && launchpad?.deployer?.toLowerCase() !== address?.toLowerCase() || !isFetchingPage && !isValidating && !launchpad) {
+      //location.href = '/my-project'
     }
   }, [launchpad, address, isConnecting])
 
@@ -303,6 +308,57 @@ const MyProjectDetailPage = () => {
       </Box>
     </Layout>
   )
+}
+
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  }
+}
+
+export const getStaticProps: GetStaticProps<{
+  ssr: {
+    launchpad?: paths['/launchpads/v1']['get']['responses']['200']['schema']
+  }
+  id: string | undefined
+}> = async ({ params }) => {
+  const id = params?.id?.toString()
+  const { reservoirBaseUrl, apiKey } =
+  supportedChains.find((chain) => params?.chain === chain.routePrefix) ||
+  DefaultChain
+  const headers: RequestInit = {
+    headers: {
+      'x-api-key': apiKey || '',
+    },
+  }
+
+  let collectionQuery: paths['/launchpads/v1']['get']['parameters']['query'] =
+    {
+      contract: id,
+      includeAllowList: true,
+      limit: 1,
+    }
+
+  const launchpadsPromise = fetcher(
+    `${reservoirBaseUrl}/launchpads/v1`,
+    collectionQuery,
+    headers
+  )
+
+  const promises = await Promise.allSettled([
+    launchpadsPromise,
+  ]).catch(() => {})
+  const launchpad: Props['ssr']['launchpad'] =
+    promises?.[0].status === 'fulfilled' && promises[0].value.data
+      ? (promises[0].value.data as Props['ssr']['launchpad'])
+      : {}
+
+  return {
+    props: { ssr: { launchpad }, id },
+    revalidate: 30,
+  }
 }
 
 export default MyProjectDetailPage
