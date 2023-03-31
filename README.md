@@ -1,6 +1,6 @@
 # The L2 NFT Markerplace Built For Earthlings
 
-Buy and Sell NFTs on L2 at NFTEarth!
+Trade NFTs on L2 on NFTEarth!
  <h1 align="center"> 
 NFTEarth is an opensource L2 NFT marketplace built with Reservoir.
  <p align="center">
@@ -10,15 +10,9 @@ NFTEarth is an opensource L2 NFT marketplace built with Reservoir.
 
 <!-- About NFTEarth -->
 
-![image](https://user-images.githubusercontent.com/29180454/222880577-0043c5bc-0484-49ac-b174-5e5283ed603f.png)
+![image](https://user-images.githubusercontent.com/29180454/229019494-840701a7-798a-409d-b996-3f619ffaf9a9.png)
 
 
-Twitter: [NFTEarth](https://twitter.com/NFTEarth_L2)
-
-Dicord: [NFTEarth](https://discord.gg/nftearth)
-
-App: [NFTEarth](https://nftearth.exchange) 
-
-Documentation: [Docs](https://docs.nftearth.exchange)
+Twitter: [NFTEarth](https://twitter.com/NFTEarth_L2) | Discord: [NFTEarth](https://discord.gg/nftearth) | App: [NFTEarth](https://nftearth.exchange) | Documentation: [Docs](https://docs.nftearth.exchange)
 
 </p>
