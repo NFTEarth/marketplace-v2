@@ -286,7 +286,7 @@ const GlobalSearch = forwardRef<
             {results &&
               results
                 .slice(0, 8)
-                .map((result) => <SearchResult result={result} />)}
+                .map((result: any) => <SearchResult key={`${result.chain}:${result.type}:${result.data}`} result={result} />)}
 
             {searching && (
               <Flex align="center" justify="center" css={{ py: '$4' }}>

@@ -174,15 +174,16 @@ export const Footer = () => {
             />
           </a>
           <a
-            href="https://aws.amazon.com/what-is-cloud-computing"
+            href="https://cloud.google.com/learn/what-is-cloud-computing#:~:text=Cloud%20computing%20is%20the%20on,pay%20for%20what%20they%20use."
             target="_blank"
             rel="noreferrer noopener"
           >
             <img
               height="100"
               width="100"
-              src={theme === 'light' ? '/brand/powered-by-aws-dark.png' : '/brand/powered-by-aws-white.png'}
+              src={theme === 'light' ? '/brand/powered-by-google-dark.png' : '/brand/powered-by-google-light.png'}
               alt="Powered by AWS Cloud Computing"
+              style={{marginTop: '-8px'}}
             />
           </a>
         </Flex>

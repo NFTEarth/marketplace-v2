@@ -21,7 +21,7 @@ import {
   QuestMakeOfferForNFT,
   QuestLeaderboard,
 } from 'components/quests/templates'
-import {useAccount} from "wagmi";
+import { useAccount } from "wagmi";
 
 const QuestsPage: NextPage = () => {
   const router = useRouter()
@@ -60,7 +60,7 @@ const QuestsPage: NextPage = () => {
   useEffect(() => {
     router.replace('/')
   }, [])
-
+  
   return (
     <Layout>
       {/* <Box
