@@ -83,7 +83,7 @@ const MyProjectPage: NextPage = () => {
           <Box>
             <Link href="/launch">
               <Box css={{ marginLeft: '25px', marginBottom: '20px' }}>
-                <Button>Create a project</Button>
+                <Button>Create an NFT collection</Button>
               </Box>
             </Link>
             <CollectionGrid>
