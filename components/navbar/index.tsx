@@ -158,7 +158,7 @@ const Navbar = () => {
                 Quests
               </NavItem>
             </Link> */}
-            <Link href="/launch">
+            {/*<Link href="/launch">
               <NavItem
                 active={router.pathname == '/launch'}
                 css={{
@@ -173,7 +173,7 @@ const Navbar = () => {
               >
                 Launchpad
               </NavItem>
-            </Link>
+            </Link>*/}
             <Link href="/leaderboard">
               <NavItem
                 active={router.pathname == '/leaderboard'}

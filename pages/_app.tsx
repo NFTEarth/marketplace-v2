@@ -172,26 +172,26 @@ function MyApp({
                   <ToastContextProvider>
                     <FunctionalComponent {...pageProps} />
                   </ToastContextProvider>
-                  {(marketplaceChain.id === 137 && isMounted) && (
-                    <div>
-                      <p>Important: Full synchronization of blockchain data for collections is ongoing, and NFT Collections may not reflect real-time data.</p>
-                      <style jsx>{`
-                        p {
-                          position: fixed;
-                          top: 110px;
-                          left: 10px;
-                          padding: 10px;
-                          background: #fff;
-                          color: orange;
-                          font-size: small;
-                          width: 300px;
-                          border-radius: 10px;
-                          text-align: center;
-                        }
-                      `}
-                      </style>
-                    </div>
-                  )}
+                  {/*{(marketplaceChain.id === 137 && isMounted) && (*/}
+                  {/*  <div>*/}
+                  {/*    <p>Important: Full synchronization of blockchain data for collections is ongoing, and NFT Collections may not reflect real-time data.</p>*/}
+                  {/*    <style jsx>{`*/}
+                  {/*      p {*/}
+                  {/*        position: fixed;*/}
+                  {/*        top: 110px;*/}
+                  {/*        left: 10px;*/}
+                  {/*        padding: 10px;*/}
+                  {/*        background: #fff;*/}
+                  {/*        color: orange;*/}
+                  {/*        font-size: small;*/}
+                  {/*        width: 300px;*/}
+                  {/*        border-radius: 10px;*/}
+                  {/*        text-align: center;*/}
+                  {/*      }*/}
+                  {/*    `}*/}
+                  {/*    </style>*/}
+                  {/*  </div>*/}
+                  {/*)}*/}
                 </ConnectKitProvider>
               </Tooltip.Provider>
             </CartProvider>

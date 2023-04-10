@@ -20,8 +20,8 @@ import ChainToggle from "components/home/ChainToggle";
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 const collectionsSetId: any = {
-  10: 'b03e080953a3a1cc77cee63968ecc126a918c8557838a2396e1651bae030b6b4',
-  42161: '3b38ae5b4e28b3b9873d74d3cf397b479a8506fe9bf26a1335b4e2807196e03b',
+  // 10: 'b03e080953a3a1cc77cee63968ecc126a918c8557838a2396e1651bae030b6b4',
+  // 42161: '3b38ae5b4e28b3b9873d74d3cf397b479a8506fe9bf26a1335b4e2807196e03b',
 }
 
 const IndexPage: NextPage<Props> = ({ ssr }) => {

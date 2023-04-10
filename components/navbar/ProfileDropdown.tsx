@@ -17,6 +17,8 @@ import {formatBN, formatNumber} from "utils/numbers";
 
 export const ProfileDropdown: FC = () => {
   const { address } = useAccount()
+  const { data: ethBalance } = useBalance({ chainId: 1, address })
+  const { data: maticBalance } = useBalance({ chainId: 137, address })
   const { data: opBalance } = useBalance({ chainId: 10, address })
   const { data: arbBalance } = useBalance({ chainId: 42161, address })
   const { data: zkEVMBalance } = useBalance({ chainId: 1101, address })
@@ -74,6 +76,26 @@ export const ProfileDropdown: FC = () => {
         <Flex justify="between">
           Balance
           <Flex direction="column">
+            <Flex align="center" css={{ gap: '$2' }}>
+              <img
+                src={`/icons/currency/eth.png`}
+                style={{
+                  height: 17,
+                  width: 17
+                }}
+              />
+              <Text>{`${formatBN(ethBalance?.value, 4, opBalance?.decimals)}Ξ`}</Text>
+            </Flex>
+            <Flex align="center" css={{ gap: '$2' }}>
+              <img
+                src={`/icons/currency/matic-token-icon.webp`}
+                style={{
+                  height: 17,
+                  width: 17
+                }}
+              />
+              <Text>{`${formatBN(maticBalance?.value, 4, opBalance?.decimals)}Ξ`}</Text>
+            </Flex>
             <Flex align="center" css={{ gap: '$2' }}>
               <img
                 src={`/icons/currency/0x4200000000000000000000000000000000000042.png`}
