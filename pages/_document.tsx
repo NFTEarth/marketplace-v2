@@ -58,14 +58,24 @@ class MyDocument extends Document {
           <meta property="og:image:height" content="630" />
           <meta property="og:image:alt" content="NFTEarth Exchange Banner" />
 
+          <meta property="reservoir:title" content="NFTEarth Exchange" />
+          <meta property="reservoir:icon" content="/nftearth-icon.png" />
           <meta property="nftearth:title" content="NFTEarth Exchange" />
           <meta property="nftearth:icon" content="/nftearth-icon.png" />
           <meta
-            property="nftearth:token-url-optimism"
+            property="reservoir:token-url-mainnet"
+            content="/collection/ethereum/${contract}/${tokenId}"
+          />
+          <meta
+            property="reservoir:token-url-polygon"
+            content="/collection/polygon/${contract}/${tokenId}"
+          />
+          <meta
+            property="reservoir:token-url-optimism"
             content="/collection/optimism/${contract}/${tokenId}"
           />
           <meta
-            property="nftearth:token-url-arbitrum"
+            property="reservoir:token-url-arbitrum"
             content="/collection/arbitrum/${contract}/${tokenId}"
           />
           <meta
