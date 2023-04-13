@@ -51,12 +51,6 @@ const HeroSection: FC<IProp> = ({ hideLink }) => {
             NFTEarth
           </Text>
           <Box css={{ width: 60, cursor: 'pointer', marginLeft: 10, marginTop: 10 }}>
-            <Image
-              src="/nftearth-icon-new.png"
-              width={68}
-              height={68}
-              alt="NFTEarth Logo"
-            />
           </Box>
         </Flex>
 
@@ -104,7 +98,7 @@ const HeroSection: FC<IProp> = ({ hideLink }) => {
                   justifyContent: 'center'
                 }}
               >
-                Explore
+                Collections
               </Button>
             </Link>
           </Flex>
