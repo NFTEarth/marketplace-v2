@@ -119,7 +119,7 @@ export const Footer = () => {
         direction="column"
         css={{ alignItems: 'flex-start', '@bp600': { alignItems: 'flex-end' } }}
       >
-        <SectionTitle title="Community" />
+        <SectionTitle title="Social" />
         <Flex css={{ gap: '$4', mt: 16 }}>
           <a
             target="_blank"
@@ -182,7 +182,7 @@ export const Footer = () => {
               height="100"
               width="100"
               src={theme === 'light' ? '/brand/powered-by-google-dark.png' : '/brand/powered-by-google-light.png'}
-              alt="Powered by AWS Cloud Computing"
+              alt="Powered by GCP"
               style={{marginTop: '-8px'}}
             />
           </a>

@@ -17,7 +17,7 @@ export interface MarketChain extends Chain {
 export const DefaultChain: MarketChain = {
   ...mainnet,
   // Any url to display the logo of the chain
-  iconUrl: `/icons/currency/0x0000000000000000000000000000000000000000.png`,
+  iconUrl: `https://assets.coingecko.com/coins/images/279/small/ethereum.png?1595348880`,
   // The base url of the reservoir api, this is used in the app when
   // directly interacting with the reservoir indexer servers (in the api proxy for example)
   // or when prefetching server side rendered data
@@ -40,7 +40,7 @@ export default [
   DefaultChain,
   {
     ...polygon,
-    iconUrl: `/icons/currency/matic-token-icon.webp`,
+    iconUrl: `https://assets.coingecko.com/coins/images/4713/small/matic-token-icon.png?1624446912`,
     reservoirBaseUrl: process.env.POLYGON_RESERVOIR_API_BASE,
     proxyApi: '/api/nftearth/polygon',
     routePrefix: 'polygon',
@@ -48,7 +48,7 @@ export default [
   },
   {
     ...optimism,
-    iconUrl: `/icons/currency/0x4200000000000000000000000000000000000042.png`,
+    iconUrl: `https://assets.coingecko.com/coins/images/25244/small/Optimism.png?1660904599`,
     reservoirBaseUrl: process.env.OPTIMISM_RESERVOIR_API_BASE,
     proxyApi: '/api/nftearth/optimism',
     routePrefix: 'optimism',
@@ -56,7 +56,7 @@ export default [
   },
   {
     ...arbitrum,
-    iconUrl: `/icons/currency/0x6c0c4816098e13cacfc7ed68da3e89d0066e8893.png`,
+    iconUrl: `https://assets.coingecko.com/asset_platforms/images/33/small/AO_logomark.png?1679733357`,
     reservoirBaseUrl: process.env.ARBITRUM_RESERVOIR_API_BASE,
     proxyApi: '/api/nftearth/arbitrum',
     routePrefix: 'arbitrum',
