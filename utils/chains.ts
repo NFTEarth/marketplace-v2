@@ -48,7 +48,7 @@ export default [
   },
   {
     ...optimism,
-    iconUrl: `https://assets.coingecko.com/coins/images/25244/small/Optimism.png?1660904599`,
+    iconUrl: `/icons/currency/0x4200000000000000000000000000000000000042.png`,
     reservoirBaseUrl: process.env.OPTIMISM_RESERVOIR_API_BASE,
     proxyApi: '/api/nftearth/optimism',
     routePrefix: 'optimism',
@@ -56,7 +56,7 @@ export default [
   },
   {
     ...arbitrum,
-    iconUrl: `https://assets.coingecko.com/asset_platforms/images/33/small/AO_logomark.png?1679733357`,
+    iconUrl: `/icons/currency/0x912ce59144191c1204e64559fe8253a0e49e6548.png',
     reservoirBaseUrl: process.env.ARBITRUM_RESERVOIR_API_BASE,
     proxyApi: '/api/nftearth/arbitrum',
     routePrefix: 'arbitrum',
