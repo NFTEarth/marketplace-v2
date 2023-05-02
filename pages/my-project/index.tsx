@@ -58,14 +58,13 @@ const MyProjectPage: NextPage = () => {
         <Flex justify="between">
           <Flex direction="column">
             <Text css={{ ml: '25px' }} style="h4">
-              My Projects
+              My Collections
             </Text>
             <Text
               style="subtitle2"
               css={{ marginTop: 4, marginLeft: '25px', color: '$gray11' }}
             >
-              Create, curate, and manage collections of unique NFTs to share and
-              sell.
+              Create and manage NFT collections to share and sell.
             </Text>
           </Flex>
           <Box>
