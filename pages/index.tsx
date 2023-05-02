@@ -63,7 +63,7 @@ const IndexPage: NextPage<Props> = ({ ssr }) => {
 
   let volumeKey: ComponentPropsWithoutRef<
     typeof TrendingCollectionsList
-  >['volumeKey'] = 'allTime'
+  >['volumeKey'] = '7day'
 
   switch (sortByTime) {
     case '1DayVolume':
