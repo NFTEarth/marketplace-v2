@@ -63,7 +63,6 @@ export default [
     apiKey: process.env.ARBITRUM_RESERVOIR_API_KEY,
   },
   {
-    ...pokygonZkEvm
     id: 1101,
     name: "zkEVM",
     network: "zkevm",
