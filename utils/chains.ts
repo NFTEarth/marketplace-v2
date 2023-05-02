@@ -1,5 +1,5 @@
 // import { constants } from 'ethers'
-import { mainnet, polygon, optimism, arbitrum } from 'wagmi/chains'
+import { mainnet, polygon, optimism, arbitrum, zkSync, polygonZkEvm } from 'wagmi/chains'
 import {Chain} from "@wagmi/chains"
 
 //CONFIGURABLE: The default export controls the supported chains for the marketplace. Removing
@@ -56,13 +56,14 @@ export default [
   },
   {
     ...arbitrum,
-    iconUrl: `/icons/currency/0x912ce59144191c1204e64559fe8253a0e49e6548.png',
+    iconUrl: `/icons/currency/0x912ce59144191c1204e64559fe8253a0e49e6548.png`,
     reservoirBaseUrl: process.env.ARBITRUM_RESERVOIR_API_BASE,
     proxyApi: '/api/nftearth/arbitrum',
     routePrefix: 'arbitrum',
     apiKey: process.env.ARBITRUM_RESERVOIR_API_KEY,
   },
   {
+    ...pokygonZkEvm
     id: 1101,
     name: "zkEVM",
     network: "zkevm",
