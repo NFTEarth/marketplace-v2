@@ -36,14 +36,6 @@ const developerSectionLinks = [
     name: 'GitHub',
     href: 'https://github.com/NFTEarth',
   },
-  {
-    name: 'API',
-    href: 'https://api.nftearth.exchange',
-  },
-  {
-    name: 'Status',
-    href: 'https://status.nftearth.exchange/',
-  },
 ]
 
 const resourcesSectionLinks = [
@@ -79,7 +71,7 @@ export const Footer = () => {
     <Flex
       justify="between"
       css={{
-        borderTop: '1px solid $gray7',
+        borderTop: '1px solid $lime7',
         borderStyle: 'solid',
         pt: '$5',
         flexDirection: 'column',
