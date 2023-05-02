@@ -62,7 +62,7 @@ const LearnHeroSection: FC = () => {
             color: '$whiteA12',
           }}
         >
-          Deploy your own NFT collection with NFTEarth’s launchpad. 
+          Create your own NFT collection with the NFTEarth launchpad. 
           </Text>
           <Box>
 
@@ -84,7 +84,7 @@ const LearnHeroSection: FC = () => {
         >
           Manage
           the collection settings, minting details, metadata, artwork
-          generation, and allowlist, all from the NFTEarth Hub. ❤️
+          generation, allowlist... all from the NFTEarth Hub ❤️
         </Text>
         </Box>
         </Box>

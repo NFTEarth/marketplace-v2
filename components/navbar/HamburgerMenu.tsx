@@ -198,7 +198,7 @@ const HamburgerMenu = () => {
                 pt: '24px',
               }}
             >
-              Portfolio
+              My NFTs
             </Text>
             <Flex
               css={{
@@ -214,7 +214,7 @@ const HamburgerMenu = () => {
                   pt: '24px',
                 }}
               >
-                Experience
+                My XP
               </Text>
               <Text>{formatNumber(data?.exp)}</Text>
             </Flex>
@@ -231,7 +231,7 @@ const HamburgerMenu = () => {
                   pt: '24px',
                 }}
               >
-                Balance
+                My Balances
               </Text>
               <FormatCryptoCurrency
                 amount={balance?.value}
