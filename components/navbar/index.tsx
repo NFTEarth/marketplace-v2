@@ -99,7 +99,7 @@ const Navbar = () => {
       justify="between"
     >
       <Box css={{ flex: 1 }}>
-        <Flex align="center">
+        <Flex> align="center"</Flex>
           <Link href="/">
             <Box
               css={{
@@ -142,7 +142,7 @@ const Navbar = () => {
                 Collections
               </NavItem>
             </Link>
-            {/* <Link href="/quests">
+            <Link href="/quests">
               <NavItem
                 active={router.pathname == '/quests'}
                 css={{
@@ -157,8 +157,8 @@ const Navbar = () => {
               >
                 Quests
               </NavItem>
-            </Link> */}
-            {/*<Link href="/launch">
+            </Link>
+            <Link href="/launch">
               <NavItem
                 active={router.pathname == '/launch'}
                 css={{
@@ -173,7 +173,8 @@ const Navbar = () => {
               >
                 Launchpad
               </NavItem>
-            </Link>*/}
+            </Link>
+          <Flex>
             <Link href="/leaderboard">
               <NavItem
                 active={router.pathname == '/leaderboard'}
