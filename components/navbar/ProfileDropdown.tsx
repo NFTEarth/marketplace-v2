@@ -64,17 +64,17 @@ export const ProfileDropdown: FC = () => {
           </Flex>
         </Link>
       </DropdownMenuItem>
-      <DropdownMenuItem as="a" href="/portfolio" css={{ display: 'block' }}>Owned NFTs</DropdownMenuItem>
+      <DropdownMenuItem as="a" href="/portfolio" css={{ display: 'block' }}>My NFTs</DropdownMenuItem>
       <DropdownMenuItem as="a" href="/my-project" css={{ display: 'block' }}>My Collections</DropdownMenuItem>
       <DropdownMenuItem css={{ cursor: 'text' }}>
         <Flex justify="between">
-          <span>Experience</span>
+          <span>My XP</span>
           <span>{formatNumber(data?.exp)}</span>
         </Flex>
       </DropdownMenuItem>
       <DropdownMenuItem css={{ cursor: 'text' }}>
         <Flex justify="between">
-          Balance
+          My Balances
           <Flex direction="column">
             <Flex align="center" css={{ gap: '$2' }}>
               <img
