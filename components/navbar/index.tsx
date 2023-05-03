@@ -45,7 +45,7 @@ const Navbar = () => {
         height: NAVBAR_HEIGHT_MOBILE,
         px: '$4',
         width: '100%',
-        borderBottom: '1px solid $gray4',
+        borderBottom: '1px solid $blackA1',
         zIndex: 999,
         background: '$slate1',
         position: 'fixed',
@@ -120,42 +120,12 @@ const Navbar = () => {
           <Box css={{ flex: 1, px: '$3', width: '100%' }}>
             <GlobalSearch
               ref={searchRef}
-              placeholder="Search for NFTs, collections and accounts"
+              placeholder="Search for collections and NFTs"
               containerCss={{ width: '100%' }}
               key={router.asPath}
             />
           </Box>
           <Flex align="center" css={{ gap: '$4', mr: '$3' }}>
-            <Link href="/explore" legacyBehavior>
-              <NavItem
-                active={router.pathname == '/explore'}
-                css={{
-                  transition: '0.3s',
-                  display: 'block',
-                  padding: '12px 15px',
-                  '&:hover': {
-                    background: theme === 'dark' ? '$gray1' : '$panelShadow',
-                    borderRadius: '$md',
-                  },
-                }}
-              >
-                Collections
-              </NavItem>
-            </Link>
-            <Link href="/quests">
-              <NavItem
-                active={router.pathname == '/quests'}
-                css={{
-                  transition: '0.3s',
-                  display: 'block',
-                  padding: '12px 15px',
-                  '&:hover': {
-                    background: theme === 'dark' ? '$gray1' : '$panelShadow',
-                    borderRadius: '$md',
-                  },
-                }}
-              >
-                Quests
               </NavItem>
             </Link>
             <Link href="/launch">
@@ -166,12 +136,12 @@ const Navbar = () => {
                   display: 'block',
                   padding: '12px 15px',
                   '&:hover': {
-                    background: theme === 'dark' ? '$gray1' : '$panelShadow',
+                    background: theme === 'dark' ? '$blackA1' : '$panelShadow',
                     borderRadius: '$md',
                   },
                 }}
               >
-                Launchpad
+                Create
               </NavItem>
             </Link>
           <Flex>
@@ -183,7 +153,7 @@ const Navbar = () => {
                   display: 'block',
                   padding: '12px 15px',
                   '&:hover': {
-                    background: theme === 'dark' ? '$gray1' : '$panelShadow',
+                    background: theme === 'dark' ? '$blackA1' : '$panelShadow',
                     borderRadius: '$md',
                   },
                 }}
