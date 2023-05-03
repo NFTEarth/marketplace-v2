@@ -109,7 +109,13 @@ const Navbar = () => {
                 alignItems: 'center',
               }}
             >
-            </Box>
+           <img
+                src="/nftearth-icon-new.png"
+                width={34}
+                height={34}
+                alt="NFTEarth Logo"
+              />
+          </Box>
           </Link>
           <Box css={{ flex: 1, px: '$3', width: '100%' }}>
             <GlobalSearch
