@@ -44,11 +44,11 @@ const resourcesSectionLinks = [
     href: '/learn-nfts',
   },
   {
-    name: '$NFTE Token',
+    name: 'NFTE Token',
     href: 'https://www.coingecko.com/en/coins/nftearth',
   },
   {
-    name: 'Brand',
+    name: 'Media Assets',
     href: 'https://docs.nftearth.exchange/resources/brand-assets',
   },
 ]
@@ -124,7 +124,7 @@ export const Footer = () => {
               color="gray3"
               css={{
                 '&:hover': {
-                  background: '$gray8',
+                  background: '$gray10',
                 },
               }}
               aria-label="Twitter"
@@ -143,7 +143,7 @@ export const Footer = () => {
               color="gray3"
               css={{
                 '&:hover': {
-                  background: '$gray8',
+                  background: '$gray10',
                 },
               }}
               aria-label="Discord"
