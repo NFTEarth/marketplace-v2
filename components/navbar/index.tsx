@@ -45,7 +45,7 @@ const Navbar = () => {
         height: NAVBAR_HEIGHT_MOBILE,
         px: '$4',
         width: '100%',
-        borderBottom: '1px solid $blackA1',
+        borderBottom: '1px solid $gray10',
         zIndex: 999,
         background: '$slate1',
         position: 'fixed',
@@ -84,7 +84,7 @@ const Navbar = () => {
         width: '100%',
         maxWidth: 1920,
         mx: 'auto',
-        borderBottom: '1px solid $gray4',
+        borderBottom: '1px solid $gray10',
         zIndex: 999,
         background:
           theme == 'dark'
@@ -99,7 +99,7 @@ const Navbar = () => {
       justify="between"
     >
       <Box css={{ flex: 1 }}>
-        <Flex> align="center"</Flex>
+        <Flex align="center"</Flex>
           <Link href="/">
             <Box
               css={{
