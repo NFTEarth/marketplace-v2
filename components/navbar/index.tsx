@@ -125,7 +125,7 @@ const Navbar = () => {
               key={router.asPath}
             />
           </Box>
-          <Flex align="center" css={{ gap: '$4', mr: '$3' }}>
+          <Flex align="center"</Flex> css={{ gap: '$4', mr: '$3' }}>
               </NavItem>
             </Link>
             <Link href="/launch">
