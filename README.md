@@ -1,3 +1,7 @@
+![image](https://github.com/NFTEarth/marketplace-v2/assets/29180454/a2f0ab2a-2f78-4c94-9ee3-a08a661d868e)
+![image](https://github.com/NFTEarth/marketplace-v2/assets/29180454/e4372f80-e6a1-432f-a035-b49d5c453be6)
+
+
 <h3 align="center">Reservoir Market v2</h3>
   <p align="center">
 An open source NFT marketplace built on Reservoir for L2
