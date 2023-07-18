@@ -7,8 +7,8 @@ import {
   useContext,
   useState,
   forwardRef,
-  ReactElement,
   useImperativeHandle,
+  useMemo,
 } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import {
@@ -58,10 +58,11 @@ import { ToastContext } from 'context/ToastContextProvider'
 import fetcher from 'utils/fetcher'
 import { DATE_REGEX, timeTill } from 'utils/till'
 import { spin } from 'components/common/LoadingSpinner'
-import { formatDollar } from 'utils/numbers'
+import { formatDollar, formatNumber } from 'utils/numbers'
 import { OpenSeaVerified } from 'components/common/OpenSeaVerified'
 import { ItemView } from './ViewToggle'
 import PortfolioTokenCard from './PortfolioTokenCard'
+import optimizeImage from 'utils/optimizeImage'
 
 type Props = {
   address: Address | undefined
@@ -308,11 +309,16 @@ const TokenTableRow: FC<TokenTableRowProps> = ({
 
   const [acceptBidModalOpen, setAcceptBidModalOpen] = useState(false)
 
-  let imageSrc: string = (
-    token?.token?.tokenId
-      ? token?.token?.image || token?.token?.collection?.imageUrl
-      : token?.token?.collection?.imageUrl
-  ) as string
+  const imageSrc = useMemo(() => {
+    return token?.token?.tokenId
+      ? token?.token?.imageSmall ||
+          optimizeImage(token?.token?.collection?.imageUrl, 250)
+      : optimizeImage(token?.token?.collection?.imageUrl, 250)
+  }, [
+    token?.token?.tokenId,
+    token?.token?.imageSmall,
+    token?.token?.collection?.imageUrl,
+  ])
 
   const isOracleOrder = token?.ownership?.floorAsk?.isNativeOffChainCancellable
 
@@ -336,7 +342,7 @@ const TokenTableRow: FC<TokenTableRowProps> = ({
         }}
       >
         <Link
-          href={`/collection/${routePrefix}/${token?.token?.contract}/${token?.token?.tokenId}`}
+          href={`/${routePrefix}/asset/${token?.token?.contract}:${token?.token?.tokenId}`}
         >
           <Flex align="center">
             {imageSrc && (
@@ -646,7 +652,7 @@ const TokenTableRow: FC<TokenTableRowProps> = ({
             />
           ) : null}
           <Link
-            href={`/collection/${routePrefix}/${token?.token?.contract}/${token?.token?.tokenId}`}
+            href={`/${routePrefix}/asset/${token?.token?.contract}:${token?.token?.tokenId}`}
           >
             <Flex align="center">
               {imageSrc && (
@@ -690,7 +696,7 @@ const TokenTableRow: FC<TokenTableRowProps> = ({
                           style="subtitle3"
                           css={{ px: '$2', fontSize: 10 }}
                         >
-                          x{token?.ownership?.tokenCount}
+                          x{formatNumber(token?.ownership?.tokenCount, 0, true)}
                         </Text>
                       </Flex>
                     )}

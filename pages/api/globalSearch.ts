@@ -1,7 +1,7 @@
-import { ethers } from 'ethers'
 import fetcher from 'utils/fetcher'
 import { paths } from '@reservoir0x/reservoir-sdk'
 import supportedChains from 'utils/chains'
+import { isAddress as isViemAddress } from 'viem'
 
 const HOST_URL = process.env.NEXT_PUBLIC_HOST_URL
 
@@ -15,6 +15,7 @@ export type SearchCollection = NonNullable<
   volumeCurrencySymbol: string
   volumeCurrencyDecimals: number
   tokenCount: string
+  chainRoutePrefix: string
 }
 
 type Collection = NonNullable<
@@ -62,7 +63,7 @@ export default async function handler(req: Request) {
     promises.push(promise)
   })
 
-  let isAddress = ethers.utils.isAddress(query as string)
+  let isAddress = isViemAddress(query as string)
 
   if (isAddress) {
     const promises = supportedChains.map(async (chain) => {
@@ -87,6 +88,7 @@ export default async function handler(req: Request) {
           floorAskPrice: collection.floorAsk?.price?.amount?.decimal,
           openseaVerificationStatus: collection.openseaVerificationStatus,
           chainName: chain.name.toLowerCase(),
+          chainRoutePrefix: chain.routePrefix,
           chainId: chain.id,
           lightChainIcon: chain.lightIconUrl,
           darkChainIcon: chain.darkIconUrl,
@@ -161,6 +163,7 @@ export default async function handler(req: Request) {
           data: {
             ...collection,
             chainName: supportedChains[index].name.toLowerCase(),
+            chainRoutePrefix: supportedChains[index].routePrefix,
             chainId: supportedChains[index].id,
             lightChainIcon: supportedChains[index].lightIconUrl,
             darkChainIcon: supportedChains[index].darkIconUrl,
